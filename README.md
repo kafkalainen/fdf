@@ -50,6 +50,7 @@ To convert from hexadecimal trgb to one colour channel;
 - Vector's length is norm or magnitude.
 - a · b = |a| * |b| * cos(a, b)
 Eli pistetulo on vektorien pituuksien tulo kertaa niiden välisen kulman kosini.
+- Use static void function to create static variables to use in functions.
 
 
 ### Reasonings
@@ -68,6 +69,9 @@ Eli pistetulo on vektorien pituuksien tulo kertaa niiden välisen kulman kosini.
 - World coordinates to camera coordinates.
 - Camera coordinates to ndc.
 - NDC to raster space.
+- WDC (Window)
+- NDC (Normalized Device Coordinates)
+- PDC (Physical Device Coordinates)
 
 ### Links
 - MinilibX documentation by Codam students [Link](https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html#compilation-on-linux)

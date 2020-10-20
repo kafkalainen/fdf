@@ -6,7 +6,7 @@
 #    By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/03 18:33:41 by joonasniv         #+#    #+#              #
-#    Updated: 2020/10/20 12:07:24 by jnivala          ###   ########.fr        #
+#    Updated: 2020/10/20 16:33:41 by jnivala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,12 @@ SRC = $(addprefix $(source_dir)/,\
 	g42_2d_transformation.c\
 	g42_2d_to_ndc.c\
 	g42_ndc_to_raster_space.c\
+	g42_rotate_x_axis.c\
+	g42_rotate_y_axis.c\
+	g42_rotate_z_axis.c\
+	g42_scale_point.c\
+	g42_clip_point.c\
+	g42_multi_vec_matrix.c\
 	fdf_handle_keypress.c\
 	fdf_image_change.c\
 	fdf_init_map.c\

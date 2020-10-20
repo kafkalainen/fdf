@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 08:32:27 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/20 12:10:15 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/20 16:38:26 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,16 @@
 # define PROPERTYCHANGEMASK (1L<<22)
 # define COLORMAPCHANGEMASK (1L<<23)
 # define OWNERGRABBUTTONMASK (1L<<24)
+# define PI 3.14159265
 # include <string.h>
 
 typedef struct	s_m4x4 {
 	float	m[4][4];
 }				t_m4x4;
+
+typedef struct	s_m3x3 {
+	float	m[3][3];
+}				t_m3x3;
 
 typedef struct	s_projection {
 	float	f_near;
@@ -166,6 +171,18 @@ int				g42_dot_product(t_vec3 *a, t_vec3 *b);
 void			g42_cross_product(t_vec3 *a, t_vec3 *b, t_vec3 *cross);
 
 void			g42_mlx_draw_grid(t_data *img, t_map *map);
+
+t_vec3			g42_multi_vec_matrix(const t_vec3 *src, t_m4x4 *x);
+
+void			g42_rotate_x_axis(t_vec3 *vec, double angle);
+
+void			g42_rotate_y_axis(t_vec3 *vec, double angle);
+
+void			g42_rotate_z_axis(t_vec3 *vec, double angle);
+
+void			g42_scale_point(t_vec3 *vec, double angle);
+
+void			g42_clip_point(t_vec3 *a);
 
 t_vec2			g42_2d_transformation(t_vec3 *a);
 
