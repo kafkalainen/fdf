@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 10:47:56 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/21 14:39:45 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/22 15:30:50 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ int		main(void)
 	mlx_hook(vars.win, ENTERNOTIFY, ENTERWINDOWMASK, mouse_enters, 0);
 	mlx_hook(vars.win, LEAVENOTIFY, LEAVEWINDOWMASK, mouse_exits, 0);
 	mlx_hook(vars.win, RESIZEREQUEST, RESIZEREDIRECTMASK, resize_window_alert, 0);
-	mlx_hook(vars.win, MOTIONNOTIFY, POINTERMOTIONMASK, track_mouse, &vars);
+	//mlx_hook(vars.win, MOTIONNOTIFY, POINTERMOTIONMASK, track_mouse, &vars);
 	mlx_hook(vars.win, KEYPRESS, KEYPRESSMASK, fdf_handle_keypress, &vars);
 	//mlx_hook(vars.win, KEYPRESS, KEYPRESSMASK, fdf_image_change, &vars);
 	//mlx_hook(vars.win, MotionNotify, PointerMotionMask, mouse_rainbow((void*)0, &new_colour, &img), 0);

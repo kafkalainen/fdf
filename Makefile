@@ -6,7 +6,7 @@
 #    By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/03 18:33:41 by joonasniv         #+#    #+#              #
-#    Updated: 2020/10/22 08:15:01 by jnivala          ###   ########.fr        #
+#    Updated: 2020/10/22 17:44:58 by jnivala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC = $(addprefix $(source_dir)/,\
 	g42_create_trgb.c\
 	g42_invert_trgb.c\
 	g42_mlx_pixel_put.c\
+	g42_mlx_draw_line_wu.c\
 	g42_mlx_draw_line_dda.c\
 	g42_mlx_draw_line_bre.c\
 	g42_mlx_draw_x_y_line.c\
@@ -35,7 +36,6 @@ SRC = $(addprefix $(source_dir)/,\
 	g42_dot_product.c\
 	g42_normalize_vector.c\
 	g42_mlx_draw_grid.c\
-	g42_2d_transformation.c\
 	g42_2d_to_ndc.c\
 	g42_2d_to_uv.c\
 	g42_ndc_to_raster_space.c\
@@ -43,11 +43,19 @@ SRC = $(addprefix $(source_dir)/,\
 	g42_rotate_y_axis.c\
 	g42_rotate_z_axis.c\
 	g42_scale_point.c\
+	g42_mod_pts.c\
+	g42_mod_vec.c\
 	g42_clip_point.c\
 	g42_multi_vec_matrix.c\
+	g42_translate.c\
 	fdf_handle_keypress.c\
 	fdf_image_change.c\
 	fdf_init_map.c\
+	fdf_draw_wire.c\
+	fdf_translate_coordinates.c\
+	fdf_idx.c\
+	fdf_move_object.c\
+	fdf_scale_object.c\
 )
 OBJ = $(SRC:.c=.o)
 

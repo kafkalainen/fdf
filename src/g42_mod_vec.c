@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   g42_ndc_to_raster_space.c                          :+:      :+:    :+:   */
+/*   g42_mod_vec.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/20 11:54:02 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/22 11:05:05 by jnivala          ###   ########.fr       */
+/*   Created: 2020/10/22 16:36:22 by jnivala           #+#    #+#             */
+/*   Updated: 2020/10/22 17:04:06 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include "math.h"
+#include "g42.h"
 
-t_uv	g42_ndc_to_raster_space(t_vec3 ndc)
+void		g42_mod_vec(t_map *map, void (*f)(t_vec3*, t_vec3), t_vec3 mod)
 {
-	t_uv	raster_space;
+	size_t	i;
+	size_t	len;
 
-	raster_space.u = (int)(ndc.x * WIN_WIDTH);
-    raster_space.v = (int)((1 - ndc.y) * WIN_HEIGHT);
-	return (raster_space);
+	i = 0;
+	len = (size_t)map->coord_amount;
+	if (map != 0)
+	{
+		while (len)
+		{
+			f(&map->coord[i], mod);
+			i++;
+			len--;
+		}
+	}
+	return ;
 }

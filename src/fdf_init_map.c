@@ -6,12 +6,11 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:23:57 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/19 17:17:01 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/22 14:48:21 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "g42.h"
 #include <stdlib.h>
 
 /*
@@ -36,6 +35,8 @@ int		fdf_init_map(t_map *map)
 	map->width = 6;
 	if (!(map->coord = (t_vec3*)malloc(sizeof(*map->coord) * map->coord_amount + 1)))
 		return (0);
+	if (!(map->screen = (t_uv*)malloc(sizeof(*(map->screen)) * map->coord_amount + 1)))
+		return (0);
 	while (coord.z < map->height)
 	{
 		coord.x = 0;
@@ -57,9 +58,9 @@ int		fdf_init_map(t_map *map)
 	map->coord[14].y = 2;
 	map->coord[15].y = 2;
 	map->coord[16].y = 1;
-	map->coord[17].y = 2;
-	map->coord[18].y = 2;
 	map->coord[19].y = 1;
+	map->coord[20].y = 2;
+	map->coord[21].y = 2;
 	map->coord[22].y = 1;
 	map->coord[25].y = 1;
 	map->coord[26].y = 1;

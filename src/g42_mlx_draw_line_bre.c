@@ -6,12 +6,13 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 10:47:01 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/22 08:17:07 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/22 18:08:22 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "g42.h"
+#include <stdint.h>
 
 void		g42_mlx_draw_line_bre(t_data *data, t_uv p0, t_uv p1, int colour)
 {
@@ -41,3 +42,20 @@ void		g42_mlx_draw_line_bre(t_data *data, t_uv p0, t_uv p1, int colour)
 		}
 	}
 }
+
+/*void		g42_mlx_draw_line_bre(t_data *data, t_uv p0, t_uv p1, int colour)
+{
+	t_uv f;
+	t_uv g;
+	int x;
+	int32_t m=((int32_t)(p1.v-p0.v) << 16)/(p1.u-p0.u);
+
+	f.v = p1.v << 16;
+	for (x = p0.u;x<=p1.u;x++,f.u+=m)
+	{
+		g = f;
+		g.u+=32767;
+		put_pixel(x,g.hi,color);
+		g42_mlx_pixel_put(data, p0.u, p0.v, colour);
+	}
+}*/

@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 08:32:27 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/22 07:59:31 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/22 17:44:36 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,6 @@ typedef struct	s_uv {
 	int			v;
 }				t_uv;
 
-typedef struct	s_vec2 {
-	float		x;
-	float		y;
-	int			colour;
-}				t_vec2;
-
 typedef struct	s_vec3 {
 	float		x;
 	float		y;
@@ -116,6 +110,7 @@ typedef struct	s_tri {
 
 typedef struct	s_map {
 	t_vec3		*coord;
+	t_uv		*screen;
 	size_t		height;
 	size_t		depth;
 	size_t		width;
@@ -160,9 +155,11 @@ void			g42_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 void			g42_mlx_solid_square(t_data *data, int off_x, int off_y, int color, int size);
 
-void			g42_mlx_draw_line_dda(t_data *data, t_uv *p0, t_uv *p1, int colour);
+void			g42_mlx_draw_line_dda(t_data *data, t_uv p0, t_uv p1, int colour);
 
 void			g42_mlx_draw_line_bre(t_data *data, t_uv p0, t_uv p1, int colour);
+
+void			g42_mlx_draw_line_wu(t_data *data, t_uv p0, t_uv p1, int colour);
 
 void			g42_mlx_draw_x_y_line(t_data *data, t_uv p0, t_uv p1, int colour);
 
@@ -172,7 +169,7 @@ int				g42_dot_product(t_vec3 *a, t_vec3 *b);
 
 void			g42_cross_product(t_vec3 *a, t_vec3 *b, t_vec3 *cross);
 
-void			g42_mlx_draw_grid(t_data *img, t_map *map);
+void			g42_mlx_draw_grid(t_data *data, t_map *map);
 
 t_vec3			g42_multi_vec_matrix(const t_vec3 *src, t_m4x4 *x);
 
@@ -182,16 +179,19 @@ void			g42_rotate_y_axis(t_vec3 *vec, double angle);
 
 void			g42_rotate_z_axis(t_vec3 *vec, double angle);
 
-void			g42_scale_point(t_vec3 *vec, double angle);
+void			g42_scale_point(t_vec3 *vec, double scale);
+
+void			g42_translate(t_vec3 *vec, t_vec3 a);
 
 void			g42_clip_point(t_vec3 *a);
 
-t_vec2			g42_2d_transformation(t_vec3 *a);
-
-t_vec2			g42_2d_to_ndc(t_vec2 proj_coord);
+t_vec3			g42_2d_to_ndc(t_vec3 proj_coord);
 
 t_uv			g42_2d_to_uv(t_vec3 coord);
 
-t_uv			g42_ndc_to_raster_space(t_vec2 ndc);
+t_uv			g42_ndc_to_raster_space(t_vec3 ndc);
 
+void			g42_mod_pts(t_map *map, void (*f)(t_vec3*, double), double scale);
+
+void			g42_mod_vec(t_map *map, void (*f)(t_vec3*, t_vec3), t_vec3 mod);
 #endif

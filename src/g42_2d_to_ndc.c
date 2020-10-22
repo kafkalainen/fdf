@@ -6,16 +6,16 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 09:20:47 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/21 12:12:10 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/22 11:04:12 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_vec2	g42_2d_to_ndc(t_vec2 proj_coord)
+t_vec3	g42_2d_to_ndc(t_vec3 proj_coord)
 {
-	t_vec2	ndc;
-	t_vec2	invert_view;
+	t_vec3	ndc;
+	t_vec3	invert_view;
 
 	invert_view.x = 1.0f / WIN_WIDTH;
 	invert_view.y = 1.0f / WIN_HEIGHT;
