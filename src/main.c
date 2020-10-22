@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 10:47:56 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/20 09:46:28 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/21 14:39:45 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,14 +128,8 @@ void	fdf_rainbow_function(t_colour *colour)
 int		main(void)
 {
 	t_vars		vars;
-	//t_vec3		test;
-	//t_colour	new_colour;
-	t_uv			s1;
-	t_uv			s2;
-	// t_seg		line2;
-	// t_seg		line3;
-	// t_seg		line4;
-
+	// t_uv		s1;
+	// t_uv		s2;
 	vars.mlx = mlx_init();
 	if (vars.mlx == NULL) {
 		return (EXIT_FAILURE);
@@ -145,15 +139,11 @@ int		main(void)
 		return (EXIT_FAILURE);
 	}
 	fdf_init_map(&vars.map);
-	//g42_cross_product(&vars.map.coord[0], &vars.map.coord[1], &test);
 	//vars.map.coord = (t_vec3*)malloc(sizeof(vars.map.coord) * vars.map.coord_amount + 1);
-	//vars.map.coord->x = 0;
-	//vars.map.coord->y = 0;
-	//vars.map.coord->z = 3;
-	s1.u = 10;
-	s1.v = 575;
-	s2.u = 50;
-	s2.v = 575;
+	// s1.u = 10;
+	// s1.v = 525;
+	// s2.u = 50;
+	// s2.v = 575;
 	// line2.x0 = 0;
 	// line2.y0 = 300;
 	// line2.x1 = 800;
@@ -168,30 +158,15 @@ int		main(void)
 	// line4.y1 = 600;
 	vars.data.img = mlx_new_image(vars.mlx, WIN_WIDTH, WIN_HEIGHT);
 	vars.data.addr = mlx_get_data_addr(vars.data.img, &vars.data.bits_per_pixel, &vars.data.line_length, &vars.data.endian);
-	//g42_mlx_solid_square(&vars.data, 5, 5, g42_create_trgb(0, 0, 0, 255), 10);
-	//g42_mlx_solid_square(&vars.data, 15, 5, g42_invert_trgb(0, 0, 0, 255), 10);
-	//new_colour = fdf_return_colour_as_struct(g42_create_trgb(0,0,255,0));
-	//g42_mlx_solid_square(&vars.data, 25, 5, g42_create_trgb(new_colour.t, new_colour.r, new_colour.g, new_colour.b), 10);
-	// g42_mlx_draw_line_bre(&vars.data, &line1, g42_create_trgb(0, 0, 0, 255));
-	// g42_mlx_draw_line_bre(&vars.data, &line2, g42_create_trgb(0, 0, 0, 255));
-	// g42_mlx_draw_line_bre(&vars.data, &line3, g42_create_trgb(0, 0, 0, 255));
-	// g42_mlx_draw_line_bre(&vars.data, &line4, g42_create_trgb(0, 0, 0, 255));
-	//g42_mlx_draw_line_dda(&vars.data, &line1, g42_create_trgb(0, 255, 0, 0));
-	// g42_mlx_draw_line_dda(&vars.data, &line2, g42_create_trgb(0, 255, 0, 0));
-	// g42_mlx_draw_line_dda(&vars.data, &line3, g42_create_trgb(0, 255, 0, 0));
-	// g42_mlx_draw_line_dda(&vars.data, &line4, g42_create_trgb(0, 255, 0, 0));
 	g42_mlx_draw_grid(&vars.data, &vars.map);
-	g42_mlx_draw_line_dda(&vars.data, &s1, &s2, 0x00FF0000);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.data.img, 0, 0);
+	mlx_string_put(vars.mlx, vars.win, 50, 50, g42_create_trgb(0, 156, 244, 229), "I'm a text");
 	//mlx_key_hook(vars.win, get_key_code, (void*)0);
 	//mlx_mouse_hook(vars.win, deal_key, (void*)0);
-	/*mlx_hook 2 = Keypress, 1L<<0 KeyPressMask*/
-	//mlx_hook(vars.win, 2, 1L<<0, close_da_window, &vars);
-	mlx_string_put(vars.mlx, vars.win, 50, 50, g42_create_trgb(0, 156, 244, 229), "I'm a text");
 	mlx_hook(vars.win, ENTERNOTIFY, ENTERWINDOWMASK, mouse_enters, 0);
 	mlx_hook(vars.win, LEAVENOTIFY, LEAVEWINDOWMASK, mouse_exits, 0);
 	mlx_hook(vars.win, RESIZEREQUEST, RESIZEREDIRECTMASK, resize_window_alert, 0);
-	//mlx_hook(vars.win, MOTIONNOTIFY, POINTERMOTIONMASK, track_mouse, &vars);
+	mlx_hook(vars.win, MOTIONNOTIFY, POINTERMOTIONMASK, track_mouse, &vars);
 	mlx_hook(vars.win, KEYPRESS, KEYPRESSMASK, fdf_handle_keypress, &vars);
 	//mlx_hook(vars.win, KEYPRESS, KEYPRESSMASK, fdf_image_change, &vars);
 	//mlx_hook(vars.win, MotionNotify, PointerMotionMask, mouse_rainbow((void*)0, &new_colour, &img), 0);

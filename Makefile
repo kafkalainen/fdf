@@ -6,7 +6,7 @@
 #    By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/03 18:33:41 by joonasniv         #+#    #+#              #
-#    Updated: 2020/10/20 16:33:41 by jnivala          ###   ########.fr        #
+#    Updated: 2020/10/22 08:15:01 by jnivala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC = $(addprefix $(source_dir)/,\
 	g42_mlx_pixel_put.c\
 	g42_mlx_draw_line_dda.c\
 	g42_mlx_draw_line_bre.c\
+	g42_mlx_draw_x_y_line.c\
 	g42_mlx_solid_square.c\
 	g42_cross_product.c\
 	g42_dot_product.c\
@@ -36,6 +37,7 @@ SRC = $(addprefix $(source_dir)/,\
 	g42_mlx_draw_grid.c\
 	g42_2d_transformation.c\
 	g42_2d_to_ndc.c\
+	g42_2d_to_uv.c\
 	g42_ndc_to_raster_space.c\
 	g42_rotate_x_axis.c\
 	g42_rotate_y_axis.c\
@@ -61,9 +63,11 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) -Lmlx_linux -lmlx -L$(INCLIB) -Llibft/ -lft -Imlx_linux -lXext -lX11 -lm -lz -o $@
 
 clean:
+	make -C $(LIBFT) clean
 	rm -rf $(OBJ)
 
 fclean: clean
+	rm $(LIBFT)libft.a
 	rm -f $(NAME)
 
 re: fclean all

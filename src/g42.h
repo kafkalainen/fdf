@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 08:32:27 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/20 16:38:26 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/22 07:59:31 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ typedef struct	s_projection {
 }				t_projection;
 
 typedef struct	s_uv {
-	float		u;
-	float		v;
+	int			u;
+	int			v;
 }				t_uv;
 
 typedef struct	s_vec2 {
@@ -160,9 +160,11 @@ void			g42_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 void			g42_mlx_solid_square(t_data *data, int off_x, int off_y, int color, int size);
 
-void			g42_mlx_draw_line_dda(t_data *img, t_uv *p0, t_uv *p1, int colour);
+void			g42_mlx_draw_line_dda(t_data *data, t_uv *p0, t_uv *p1, int colour);
 
-void			g42_mlx_draw_line_bre(t_data *img, t_uv *p0, t_uv *p1, int colour);
+void			g42_mlx_draw_line_bre(t_data *data, t_uv p0, t_uv p1, int colour);
+
+void			g42_mlx_draw_x_y_line(t_data *data, t_uv p0, t_uv p1, int colour);
 
 void			g42_normalize_vector(t_vec3 *v);
 
@@ -187,6 +189,8 @@ void			g42_clip_point(t_vec3 *a);
 t_vec2			g42_2d_transformation(t_vec3 *a);
 
 t_vec2			g42_2d_to_ndc(t_vec2 proj_coord);
+
+t_uv			g42_2d_to_uv(t_vec3 coord);
 
 t_uv			g42_ndc_to_raster_space(t_vec2 ndc);
 

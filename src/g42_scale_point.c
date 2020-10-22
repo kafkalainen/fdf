@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   g42_2d_to_ndc.c                                    :+:      :+:    :+:   */
+/*   g42_scale_point.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/20 09:20:47 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/21 12:12:10 by jnivala          ###   ########.fr       */
+/*   Created: 2020/10/20 15:02:38 by jnivala           #+#    #+#             */
+/*   Updated: 2020/10/20 15:32:29 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "g42.h"
 
-t_vec2	g42_2d_to_ndc(t_vec2 proj_coord)
+void	g42_scale_point(t_vec3 *vec, double scale)
 {
-	t_vec2	ndc;
-	t_vec2	invert_view;
+	t_m4x4	m;
 
-	invert_view.x = 1.0f / WIN_WIDTH;
-	invert_view.y = 1.0f / WIN_HEIGHT;
-	ndc.x = 2.0f * proj_coord.x * invert_view.x - 1.0f;
-	ndc.y = 2.0f * -proj_coord.y * invert_view.y + 1.0f;
-	return (ndc);
+	m.m[0][0] = scale;
+	m.m[0][1] = 0;
+	m.m[0][2] = 0;
+	m.m[0][3] = 0;
+	m.m[1][0] = 0;
+	m.m[1][1] = scale;
+	m.m[1][2] = 0;
+	m.m[1][3] = 0;
+	m.m[2][0] = 0;
+	m.m[2][1] = 0;
+	m.m[2][2] = scale;
+	m.m[2][3] = 0;
+	m.m[3][0] = 0;
+	m.m[3][1] = 0;
+	m.m[3][2] = 0;
+	m.m[3][3] = 1;
+	*vec = g42_multi_vec_matrix(vec, &m);
 }
