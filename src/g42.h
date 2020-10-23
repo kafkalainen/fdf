@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 08:32:27 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/22 17:44:36 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/23 13:23:28 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,11 @@
 # include <string.h>
 
 typedef struct	s_m4x4 {
-	float	m[4][4];
+	double	m[4][4];
 }				t_m4x4;
 
 typedef struct	s_m3x3 {
-	float	m[3][3];
+	double	m[3][3];
 }				t_m3x3;
 
 typedef struct	s_projection {
@@ -98,9 +98,9 @@ typedef struct	s_uv {
 }				t_uv;
 
 typedef struct	s_vec3 {
-	float		x;
-	float		y;
-	float		z;
+	double		x;
+	double		y;
+	double		z;
 	int			colour;
 }				t_vec3;
 
@@ -162,6 +162,8 @@ void			g42_mlx_draw_line_bre(t_data *data, t_uv p0, t_uv p1, int colour);
 void			g42_mlx_draw_line_wu(t_data *data, t_uv p0, t_uv p1, int colour);
 
 void			g42_mlx_draw_x_y_line(t_data *data, t_uv p0, t_uv p1, int colour);
+
+void			g42_mlx_draw_diagonal(t_data *data ,t_uv p0, t_uv p1, int colour);
 
 void			g42_normalize_vector(t_vec3 *v);
 

@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 14:35:57 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/21 10:06:36 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/23 18:07:07 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef const char	t_c_char;
 
 char				***ft_3dstrarrdel(char ****a3d, size_t z, size_t y);
 int					ft_atoi(const char *nptr);
+int					ft_atoi_base(const char *nptr, int base);
 int					ft_abs(int i);
 void				ft_bzero(void *s, size_t n);
 int					ft_isalpha(int c);

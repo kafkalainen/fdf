@@ -84,7 +84,7 @@ To convert from hexadecimal trgb to one colour channel;
 - Vectors, points in space and matrices [Link](https://www.scratchapixel.com/lessons/mathematics-physics-for-computer-graphics/geometry/coordinate-systems)
 - Why to use floats against doubles [Link](https://stackoverflow.com/questions/24231389/struct-or-class-for-matrix-4x4-object)
 - Bresenham's Algorithm implementation using bitwise calculations [Link](https://hbfs.wordpress.com/2009/07/28/faster-than-bresenhams-algorithm/)
-
+- Here are some spatial transformation matrices [Link](https://www.brainvoyager.com/bv/doc/UsersGuide/CoordsAndTransforms/SpatialTransformationMatrices.html)
 ### To-do
 - Read about vectors and matrices, and how to use them.
 - If vectors and matrices fail, then use ready-made trigonometric solution.

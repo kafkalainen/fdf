@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 13:51:20 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/20 14:07:13 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/23 12:51:29 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_vec3		g42_multi_vec_matrix(const t_vec3 *src, t_m4x4 *x)
 {
 	t_vec3		dst;
-	float		w;
+	double		w;
 
 	dst.x = src->x * x->m[0][0] + src->y * x->m[1][0]
 	+ src->z * x->m[2][0] + x->m[3][0];
@@ -26,7 +26,7 @@ t_vec3		g42_multi_vec_matrix(const t_vec3 *src, t_m4x4 *x)
 	w = src->x * x->m[0][3] + src->y * x->m[1][3]
 	+ src->z * x->m[2][3] + x->m[3][3];
 
-	if (w != 0 && w != 1)
+	if (w != 0.0 && w != 1.0)
 	{
 		dst.x = dst.x / w;
 		dst.y = dst.y / w;

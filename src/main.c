@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 10:47:56 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/22 15:30:50 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/23 14:48:29 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,37 +125,23 @@ void	fdf_rainbow_function(t_colour *colour)
 	return (0);
 }*/
 
-int		main(void)
+int		main(int argc, char **argv)
 {
 	t_vars		vars;
-	// t_uv		s1;
-	// t_uv		s2;
-	vars.mlx = mlx_init();
-	if (vars.mlx == NULL) {
+
+	if (argc != 2)
+	{
+		ft_putstr_fd("Please provide a valid filename. Correct usage ./fdf <filename>\n", 2);
 		return (EXIT_FAILURE);
 	}
-	vars.win = mlx_new_window(vars.mlx, WIN_WIDTH, WIN_HEIGHT, "fdf");
-	if (vars.win == NULL) {
-		return (EXIT_FAILURE);
-	}
+	fdf_file_reader(&vars.map, argv[1]);
 	fdf_init_map(&vars.map);
-	//vars.map.coord = (t_vec3*)malloc(sizeof(vars.map.coord) * vars.map.coord_amount + 1);
-	// s1.u = 10;
-	// s1.v = 525;
-	// s2.u = 50;
-	// s2.v = 575;
-	// line2.x0 = 0;
-	// line2.y0 = 300;
-	// line2.x1 = 800;
-	// line2.y1 = 300;
-	// line3.x0 = 800;
-	// line3.y0 = 0;
-	// line3.x1 = 0;
-	// line3.y1 = 600;
-	// line4.x0 = 400;
-	// line4.y0 = 0;
-	// line4.x1 = 400;
-	// line4.y1 = 600;
+	vars.mlx = mlx_init();
+	if (vars.mlx == NULL)
+		return (EXIT_FAILURE);
+	vars.win = mlx_new_window(vars.mlx, WIN_WIDTH, WIN_HEIGHT, "fdf");
+	if (vars.win == NULL)
+		return (EXIT_FAILURE);
 	vars.data.img = mlx_new_image(vars.mlx, WIN_WIDTH, WIN_HEIGHT);
 	vars.data.addr = mlx_get_data_addr(vars.data.img, &vars.data.bits_per_pixel, &vars.data.line_length, &vars.data.endian);
 	g42_mlx_draw_grid(&vars.data, &vars.map);

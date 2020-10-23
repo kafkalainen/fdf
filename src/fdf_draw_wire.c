@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 09:20:19 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/22 17:48:34 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/23 13:38:48 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,21 @@ void		fdf_draw_wire(t_data *data, t_map *map, t_uv *coord)
 			res = coord[fdf_idx(x, y, map)];
 			if (y != map->height - 1)
 			{
-				g42_mlx_draw_x_y_line(data, res, coord[fdf_idx(x, y + 1, map)], 0x00FF0000);
+				fdf_draw_line(data, res, coord[fdf_idx(x, y + 1, map)], 0x00FF0000);
+				//if (res.v == coord[fdf_idx(x, y + 1, map)].v)
+				//g42_mlx_draw_x_y_line(data, res, coord[fdf_idx(x, y + 1, map)], 0x00FF0000);
 				/*g42_mlx_draw_line_dda(data, res, coord[fdf_idx(x + 1, y, map)], 0x00FF0000);*/
-				g42_mlx_draw_line_bre(data, res, coord[fdf_idx(x, y + 1, map)], 0x00FF0000);
+				//g42_mlx_draw_line_bre(data, res, coord[fdf_idx(x, y + 1, map)], 0x00FF0000);
 				// g42_mlx_draw_line_wu(data, res, coord[fdf_idx(x, y + 1, map)], 0x00FF0000);
 			}
 			if (x != map->width - 1)
 			{
-				g42_mlx_draw_x_y_line(data, res, coord[fdf_idx(x + 1, y, map)], 0x00FF0000);
+				fdf_draw_line(data, res, coord[fdf_idx(x + 1, y, map)], 0x00FF0000);
+				//if (res.u == coord[fdf_idx(x, y + 1, map)].u)
+				//g42_mlx_draw_x_y_line(data, res, coord[fdf_idx(x + 1, y, map)], 0x00FF0000);
 				/*g42_mlx_draw_line_dda(data, res, coord[fdf_idx(x + 1, y, map)], 0x00FF0000);*/
-				g42_mlx_draw_line_bre(data, res, coord[fdf_idx(x + 1, y, map)], 0x00FF0000);
+				//else
+				//g42_mlx_draw_line_bre(data, res, coord[fdf_idx(x + 1, y, map)], 0x00FF0000);
 				// g42_mlx_draw_line_wu(data, res, coord[fdf_idx(x, y + 1, map)], 0x00FF0000);
 			}
 		x++;

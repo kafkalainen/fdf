@@ -6,7 +6,7 @@
 #    By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/03 18:33:41 by joonasniv         #+#    #+#              #
-#    Updated: 2020/10/22 17:44:58 by jnivala          ###   ########.fr        #
+#    Updated: 2020/10/23 14:44:59 by jnivala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC = $(addprefix $(source_dir)/,\
 	g42_mlx_draw_line_dda.c\
 	g42_mlx_draw_line_bre.c\
 	g42_mlx_draw_x_y_line.c\
+	g42_mlx_draw_diagonal.c\
 	g42_mlx_solid_square.c\
 	g42_cross_product.c\
 	g42_dot_product.c\
@@ -52,10 +53,12 @@ SRC = $(addprefix $(source_dir)/,\
 	fdf_image_change.c\
 	fdf_init_map.c\
 	fdf_draw_wire.c\
+	fdf_draw_line.c\
 	fdf_translate_coordinates.c\
 	fdf_idx.c\
 	fdf_move_object.c\
 	fdf_scale_object.c\
+	fdf_file_reader.c\
 )
 OBJ = $(SRC:.c=.o)
 

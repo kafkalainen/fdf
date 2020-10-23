@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 16:32:21 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/22 17:26:17 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/23 14:44:40 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # include "g42.h"
 # include <string.h>
 
+int		fdf_file_reader(t_map *map, char *filename);
+
 int		fdf_handle_keypress(int keycode, t_vars *vars);
 
 int		fdf_image_change(int keycode, t_vars *vars);
@@ -43,6 +45,8 @@ int		fdf_scale_object(int keycode, t_vars *vars);
 int		fdf_init_map(t_map *map);
 
 void	fdf_draw_wire(t_data *data, t_map *map, t_uv *coord);
+
+void	fdf_draw_line(t_data *data ,t_uv p0, t_uv p1, int colour);
 
 t_uv	*fdf_translate_coordinates(t_map *map);
 
