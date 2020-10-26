@@ -43,6 +43,9 @@
 - NDC (Normalized Device Coordinates)
 - PDC (Physical Device Coordinates)
 - Create isdigit_base and ft_atoi_base.
+- A valid map has depth coordinates in hexadecimal, combined (1,0xFF) or in decimal notation. It can have different row length.
+- A valid map has only following characters
+	`0123456789xXabcdefABCDEF,\s\n`
 
 ### Links
 - MinilibX documentation by Codam students [Link](https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html#compilation-on-linux)

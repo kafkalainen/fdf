@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 14:35:57 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/23 18:07:07 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/24 11:32:24 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int					ft_atoi(const char *nptr);
 int					ft_atoi_base(const char *nptr, int base);
 int					ft_abs(int i);
 void				ft_bzero(void *s, size_t n);
+size_t				ft_count_wrds(const char *s, int d);
 int					ft_isalpha(int c);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);

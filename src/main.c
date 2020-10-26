@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 10:47:56 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/23 14:48:29 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/26 13:44:15 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ int		main(int argc, char **argv)
 		ft_putstr_fd("Please provide a valid filename. Correct usage ./fdf <filename>\n", 2);
 		return (EXIT_FAILURE);
 	}
+	printf("%s\n", argv[1]);
 	fdf_file_reader(&vars.map, argv[1]);
 	fdf_init_map(&vars.map);
 	vars.mlx = mlx_init();

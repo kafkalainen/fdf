@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 08:32:27 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/23 13:23:28 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/26 11:27:29 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,22 @@ typedef struct	s_tri {
 	t_vec3		tri[3];
 }				t_tri;
 
+typedef struct	s_camera
+{
+	double		angle_x;
+	double		angle_y;
+	double		angle_z;
+	double		distance;
+}				t_camera;
+
+
 typedef struct	s_map {
 	t_vec3		*coord;
 	t_uv		*screen;
 	size_t		height;
 	size_t		depth;
-	size_t		width;
+	size_t		*width;
+	size_t		max_width;
 	size_t		coord_amount;
 }				t_map;
 

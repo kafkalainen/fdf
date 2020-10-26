@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 16:32:21 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/23 14:44:40 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/26 12:59:34 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,19 @@
 # define DOWN 65364
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
+# define MALLOC_FAILED 1
+# define INVALID_CHARACTERS 2
 # define WIN_WIDTH 1024
 # define WIN_HEIGHT 768
+# define BUFF_SIZE 1024
 # include "g42.h"
 # include <string.h>
+
+size_t	fdf_count_height(char const *s, t_map *map);
+
+size_t	*fdf_count_width(char const *s, t_map *map);
+
+int		fdf_depth_parser(char const *elem);
 
 int		fdf_file_reader(t_map *map, char *filename);
 

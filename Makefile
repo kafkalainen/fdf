@@ -6,7 +6,7 @@
 #    By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/03 18:33:41 by joonasniv         #+#    #+#              #
-#    Updated: 2020/10/23 14:44:59 by jnivala          ###   ########.fr        #
+#    Updated: 2020/10/24 12:53:29 by jnivala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,9 @@ SRC = $(addprefix $(source_dir)/,\
 	fdf_move_object.c\
 	fdf_scale_object.c\
 	fdf_file_reader.c\
+	fdf_count_height.c\
+	fdf_count_width.c\
+	fdf_depth_parser.c\
 )
 OBJ = $(SRC:.c=.o)
 

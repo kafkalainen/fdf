@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 14:30:47 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/23 16:00:48 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/26 13:41:55 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <unistd.h>
 #include "../libft/libft.h"
-#include "../libft/get_next_line.h"
 #include "fdf.h"
+#include "stdlib.h"
 
 static void mypause ( void )
 {
@@ -27,55 +28,105 @@ static void mypause ( void )
 
 static int	fdf_check_legal_characters(char *trimmed)
 {
-	char	legal[20];
+	char	legal[21];
 	size_t	len;
 
-	ft_strcpy(legal, "xX0123456789ABCDEF ");
+	ft_strcpy(legal, "X0123456789ABCDEF ,\n");
 	len = ft_strlen(trimmed);
 	while (--len)
 	{
-		if (!(ft_strchr(legal, trimmed[len])))
-			return (2);
+		if (!(ft_strchr(legal, ft_toupper(trimmed[len]))))
+			return (INVALID_CHARACTERS);
 	}
 	return (0);
 }
 
-static size_t	fdf_count_columns(char const *s)
-{
-	size_t			i;
-	size_t			column_count;
-
-	i = 0;
-	column_count = 0;
-	while (s[i] != '\0')
-	{
-		while (s[i] == ' ')
-			i++;
-		if (s[i] != ' ' && s[i] != '\0')
-			column_count++;
-		while (s[i] != ' ' && s[i] != '\0')
-			i++;
-	}
-	return (column_count);
-}
-
-static int	fdf_validation(char *str, t_map *map)
+static int	fdf_validation(char *str, t_map *map, char **arr)
 {
 	char	*trimmed;
-	char	**arr;
-	size_t	width;
+	size_t	len;
 	int		valid;
 
 	if (!(trimmed = ft_strtrim(str)))
-		return (1);
+		return (MALLOC_FAILED);
 	ft_strdel(&str);
-	width = fdf_count_columns(trimmed);
-	printf("%ld", width);
-	map->width = width;
+	len = ft_count_wrds(trimmed, ' ');
+	fdf_count_height(trimmed, map);
+	fdf_count_width(trimmed, map);
+	printf("%ld\n", len);
+	// printf("Width %ld\n", width);
+	// printf("Height %ld\n", height);
+	// if (map->width[0] * map->height != len)
+	// {
+	// 	printf("Width x height %ld\n", map->width * map->height);
+	// 	printf("all coords %ld\n", len);
+	// 	return (3);
+	// }
 	valid = fdf_check_legal_characters(trimmed);
 	if (!(arr = ft_strsplit(trimmed, ' ')))
-		return (1);
+		return (MALLOC_FAILED);
 	return (valid);
+}
+
+
+static int fdf_read_function(int fd, char **map)
+{
+	char		buf[BUFF_SIZE + 1];
+	int			ret;
+	static char	*temp;
+
+	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
+	{
+		buf[ret] = '\0';
+		if (temp)
+		{
+			if (!(temp = ft_strjoin(buf, temp)))
+				return (MALLOC_FAILED);
+		}
+		else
+		{
+			if (!(temp = ft_strdup(buf)))
+				return (MALLOC_FAILED);
+		}
+	}
+	if (temp)
+	{
+		*map = ft_strdup(temp);
+		ft_strdel(&temp);
+	}
+	return (0);
+}
+
+int			fdf_read_coord(t_map *map, char ***arr)
+{
+	size_t		i;
+	size_t		z;
+	t_vec3		coord;
+
+	i = 0;
+	z = 0;
+	coord.x = 0;
+	coord.z = 0;
+	map->depth = 0;
+	if (!(map->coord = (t_vec3*)malloc(sizeof(*map->coord) * map->max_width * map->height + 1)))
+		return (MALLOC_FAILED);
+	if (!(map->screen = (t_uv*)malloc(sizeof(*(map->screen)) * map->max_width * map->height + 1)))
+		return (MALLOC_FAILED);
+	while (coord.z < map->height)
+	{
+		coord.x = 0;
+		while (coord.x < map->width[z])
+		{
+ 			map->coord[i].x = coord.x;
+ 			map->coord[i].z = coord.z;
+ 			map->coord[i].y = fdf_depth_parser(*arr[i]);
+ 			coord.x++;
+ 			i++;
+ 		}
+ 		coord.z++;
+		z++;
+ 	}
+	return (0);
 }
 
 int			fdf_file_reader(t_map *map, char *filename)
@@ -83,71 +134,31 @@ int			fdf_file_reader(t_map *map, char *filename)
 	int		err;
 	int		fd;
 	char	*str;
+	char	**arr;
 
-	map->depth = 1;
+	map->width = 0;
+	map->height = 0;
+	map->depth = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd != -1)
 	{
-		while (get_next_line(fd, &str) == 1)
-		{
-			printf("%ld", map->depth);
-			err = fdf_validation(str, map);
-			if (err == 0)
-				(ft_putendl_fd("Valid line.", 2));
-			if (err == 2)
-				(ft_putendl_fd("Invalid line.", 2));
-			if (err == 1)
-				(ft_putendl_fd("Memory allocation failed reading map.", 2));
-			mypause();
-		}
+		if (fdf_read_function(fd, &str))
+			ft_putendl_fd("ERROR: Memory allocation failed while reading map.", 2);
+		ft_putendl_fd(str, 2);
+		mypause();
+		err = fdf_validation(str, map, arr);
+		if (err == 0)
+			(ft_putendl_fd("Valid line.", 2));
+		if (err == 3)
+			(ft_putendl_fd("ERROR: Invalid line length.", 2));
+		if (err == 2)
+			(ft_putendl_fd("ERROR: Invalid line.", 2));
+		if (err == MALLOC_FAILED)
+			(ft_putendl_fd("ERROR: Memory allocation failed while reading map.", 2));
+		mypause();
+		err = fdf_read_coord(map, &arr);
+		mypause();
 	}
 	close(fd);
 	return (0);
 }
-
-// {
-// 	size_t		i;
-// 	t_vec3		coord;
-
-// 	i = 0;
-// 	coord.x = 0;
-// 	coord.z = 0;
-// 	map->coord_amount = 36;
-// 	map->height = 6;
-// 	map->depth = 2;
-// 	map->width = 6;
-// 	if (!(map->coord = (t_vec3*)malloc(sizeof(*map->coord) * map->coord_amount + 1)))
-// 		return (0);
-// 	if (!(map->screen = (t_uv*)malloc(sizeof(*(map->screen)) * map->coord_amount + 1)))
-// 		return (0);
-// 	while (coord.z < map->height)
-// 	{
-// 		coord.x = 0;
-// 		while (coord.x < map->width)
-// 		{
-// 			map->coord[i].x = coord.x;
-// 			map->coord[i].z = coord.z;
-// 			map->coord[i].y = 0;
-// 			coord.x++;
-// 			i++;
-// 		}
-// 		coord.z++;
-// 	}
-// 	map->coord[7].y = 1;
-// 	map->coord[8].y = 1;
-// 	map->coord[9].y = 1;
-// 	map->coord[10].y = 1;
-// 	map->coord[13].y = 1;
-// 	map->coord[14].y = 2;
-// 	map->coord[15].y = 2;
-// 	map->coord[16].y = 1;
-// 	map->coord[19].y = 1;
-// 	map->coord[20].y = 2;
-// 	map->coord[21].y = 2;
-// 	map->coord[22].y = 1;
-// 	map->coord[25].y = 1;
-// 	map->coord[26].y = 1;
-// 	map->coord[27].y = 1;
-// 	map->coord[28].y = 1;
-// 	return (1);
-// }
