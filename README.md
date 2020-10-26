@@ -2,25 +2,8 @@
 
 ## Wireframing project for 42 curriculum at Hive Helsinki
 
-### To-do
 
-- Check that GNL works.
-Map needs to:
-- Change colours.
-- Change altitude.
-- You'll need to be able to zoom in and out and pan the camera.
-- As an example, you'll need first to start with drawing the lines between points.
-- Bresenham: Tracing.
-- Choose between three views: Isometric, parallel and conical.
-- File parsing.
-- What is a valid file?
-Valid file has only one newline per row, and one space between numbers.
-- Create a function that assigns values to a struct that holds points in space.
-- Create a struct that stores all the points of the map.
-- Add click to draw.
-- Zoom in.
-- Zoom out.
-- Altitude.
+### Features
 - Scaling.
 - Specify the color spectrum in parameter.
 - Manage correctly the hidden surfaces.
@@ -28,18 +11,6 @@ Valid file has only one newline per row, and one space between numbers.
 
 
 ### Notes
-
-To convert from hexadecimal trgb to one colour channel;
-
-	trgb(0, 255, 0, 0)
-	0x00FF0000
-	t = 0 x 256 x 256 x 256
-	r = 255 x 256 x 256
-	g = 0 x 256
-	b = 0
-
-2D line, but how to implement 3rd dimension?
-- Trigonometry with isometric transformations in Kirupa's and VBrazhnik's wiki sites.
 - Middlepoint should be window's origo.
 - Translation Figure slides in any direction.
 - Reflection Figure flips over a line.
