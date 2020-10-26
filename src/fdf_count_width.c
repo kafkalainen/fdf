@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 10:53:05 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/26 12:54:35 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/26 14:09:30 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 size_t	*fdf_count_width(char const *s, t_map *map)
 {
-	size_t			j;
+	size_t		j;
 
 	j = 0;
 	map->max_width = 0;
@@ -25,16 +25,17 @@ size_t	*fdf_count_width(char const *s, t_map *map)
 	while (*s != '\0')
 	{
 		map->width[j] = 0;
-		while (*s != '\n')
+		while (*s != '\n' && *s != '\0')
 		{
-			while (*s == ' ')
+			while (*s == ' ' && *s != '\0')
 				s++;
-			if (*s != ' ' && *s != '\n')
+			if (*s != ' ' && *s != '\n' && *s != '\0')
 				map->width[j]++;
-			while (*s != ' ' && *s != '\n')
+			while (*s != ' ' && *s != '\n' && *s != '\0')
 				s++;
 		}
-		s++;
+		if (*s == '\n')
+			s++;
 		if (map->width[j] > map->max_width)
 			map->max_width = map->width[j];
 		j++;

@@ -6,7 +6,7 @@
 #    By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/03 18:33:41 by joonasniv         #+#    #+#              #
-#    Updated: 2020/10/24 12:53:29 by jnivala          ###   ########.fr        #
+#    Updated: 2020/10/26 13:49:22 by jnivala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ CFLAGS = -Wall -Wextra -Werror -O3 -g $(addprefix -I,$(include_dirs))
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) src/g42.h src/fdf.h
 	make -C $(LIBFT) fclean && make -C $(LIBFT)
 	$(CC) $(OBJ) -Lmlx_linux -lmlx -L$(INCLIB) -Llibft/ -lft -Imlx_linux -lXext -lX11 -lm -lz -o $@
 
