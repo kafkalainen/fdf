@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 08:32:27 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/28 15:13:23 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/28 15:44:14 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ typedef struct	s_map {
 	size_t		min_depth;
 	size_t		*width;
 	size_t		max_width;
-	size_t		coord_amount;
+	size_t		pts;
 }				t_map;
 
 typedef struct	s_colour {

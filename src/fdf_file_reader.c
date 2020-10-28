@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 14:30:47 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/28 15:15:30 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/28 15:46:04 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 #include "fdf.h"
 #include "stdlib.h"
 
-static void mypause ( void )
+static void	mypause(void)
 {
-	printf ("Press [Enter] to get next line. . .");
-	fflush (stdout);
+	printf("Press [Enter] to get next line. . .");
+	fflush(stdout);
 	getchar();
 }
 
@@ -43,16 +43,14 @@ static int	fdf_check_legal_characters(char *str)
 
 static int	fdf_map_mem_allocation(char *str, t_map *map, char ***arr)
 {
-	map->coord_amount = ft_count_wrds(str, ' ');
-	printf("%ld\n", map->coord_amount);
+	map->pts = ft_count_wrds(str, ' ');
 	fdf_count_height(str, map);
-	printf("Height %ld\n", map->height);
 	fdf_count_width(str, map);
-	if (!(map->coord = (t_vec3*)malloc(sizeof(*map->coord) * map->coord_amount + 1)))
+	if (!(map->coord = (t_vec3*)malloc(sizeof(*map->coord) * map->pts + 1)))
 		return (MALLOC_FAILED);
-	if (!(map->proj = (t_vec3*)malloc(sizeof(*(map->proj)) * map->coord_amount + 1)))
+	if (!(map->proj = (t_vec3*)malloc(sizeof(*(map->proj)) * map->pts + 1)))
 		return (MALLOC_FAILED);
-	if (!(map->screen = (t_uv*)malloc(sizeof(*(map->screen)) * map->coord_amount + 1)))
+	if (!(map->screen = (t_uv*)malloc(sizeof(*(map->screen)) * map->pts + 1)))
 		return (MALLOC_FAILED);
 	ft_replace_char(str, '\n', ' ');
 	ft_putendl_fd(str, 1);
@@ -110,16 +108,16 @@ int			fdf_read_coord(t_map *map, char ***arr)
 		coord.x = 0;
 		while (coord.x < map->width[z])
 		{
- 			map->coord[i].x = coord.x;
- 			map->coord[i].z = coord.z;
- 			map->coord[i].y = fdf_depth_parser(*(*(arr) + j));
- 			coord.x++;
- 			i++;
+			map->coord[i].x = coord.x;
+			map->coord[i].z = coord.z;
+			map->coord[i].y = fdf_depth_parser(*(*(arr) + j));
+			coord.x++;
+			i++;
 			j++;
- 		}
- 		coord.z++;
+		}
+		coord.z++;
 		z++;
- 	}
+	}
 	return (0);
 }
 

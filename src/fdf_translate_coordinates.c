@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 09:26:34 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/27 14:39:09 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/28 15:46:10 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_uv	*fdf_translate_coordinates(t_map *map, t_cam *cam)
 	i = 0;
 	if (map == NULL)
 		return (NULL);
-	while (i < map->coord_amount)
+	while (i < map->pts)
 	{
 		map->screen[i] = g42_2d_to_uv(map->proj[i], map, cam);
 		i++;

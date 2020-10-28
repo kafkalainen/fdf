@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:23:57 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/27 15:15:54 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/28 15:46:05 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		fdf_init_view(t_map *map, t_cam *cur)
 	i = 0;
 	scale = (double)(WIN_WIDTH) / (double)(map->max_width);
 	cur->dist = scale;
-	while (i < map->coord_amount)
+	while (i < map->pts)
 	{
 		map->proj[i] = map->coord[i];
 		i++;
