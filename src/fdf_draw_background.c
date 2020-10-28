@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   g42_2d_to_uv.c                                     :+:      :+:    :+:   */
+/*   fdf_draw_background.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/21 12:03:37 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/28 15:06:19 by jnivala          ###   ########.fr       */
+/*   Created: 2020/10/27 14:46:45 by jnivala           #+#    #+#             */
+/*   Updated: 2020/10/27 15:53:02 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_uv	g42_2d_to_uv(t_vec3 coord, t_map *map, t_cam *cam)
+int		fdf_draw_background(t_data *data)
 {
-	t_uv	screen_coord;
+	t_uv	pixel;
 
-	screen_coord.u = (int)(WIN_WIDTH / 2 + coord.x);
-	screen_coord.u -= (int)((map->max_width - 1) * cam->dist / 2);
-	screen_coord.v = (int)(WIN_HEIGHT / 2 - coord.y + MENU_HEIGHT);
-	screen_coord.v += (int)((map->height - 1) * cam->dist / 2);
-	screen_coord.colour = coord.colour;
-	return (screen_coord);
+	pixel.v = 0;
+	while (pixel.v < WIN_HEIGHT)
+	{
+		pixel.u = 0;
+		while (pixel.u < WIN_WIDTH)
+		{
+			g42_mlx_pixel_put(data, pixel.u, pixel.v, 0xff1f1f1f);
+			pixel.u++;
+		}
+		pixel.v++;
+	}
+	return (0);
 }

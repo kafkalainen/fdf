@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 10:47:56 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/26 13:44:15 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/28 15:06:41 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include "g42.h"
 #include "fdf.h"
 #include <stdio.h>
-
-//int				render_next_frame(void *YourStruct);
 
 int		get_key_code(int key, void *param)
 {
@@ -35,35 +33,6 @@ int	track_mouse(int x,int y, void *p)
 	if (p)
 	{
 		printf("Mouse moving in window, at %dx%d.\n",x,y);
-	}
-	return (0);
-}
-
-
-int	mouse_enters(void *p)
-{
-	if (p == NULL)
-	{
-		printf("OH GOD IT IS A MOUSE!!\n");
-	}
-	return (0);
-}
-
-int	mouse_exits(void *p)
-{
-	if (p == NULL)
-	{
-		printf("KTHXBYE!!\n");
-	}
-	return (0);
-}
-
-
-int	resize_window_alert(void *p)
-{
-	if (p == NULL)
-	{
-		resize_window_alert("MEIN GOTT DON'T TOUCH HANS!!!\n");
 	}
 	return (0);
 }
@@ -134,9 +103,7 @@ int		main(int argc, char **argv)
 		ft_putstr_fd("Please provide a valid filename. Correct usage ./fdf <filename>\n", 2);
 		return (EXIT_FAILURE);
 	}
-	printf("%s\n", argv[1]);
 	fdf_file_reader(&vars.map, argv[1]);
-	fdf_init_map(&vars.map);
 	vars.mlx = mlx_init();
 	if (vars.mlx == NULL)
 		return (EXIT_FAILURE);
@@ -145,20 +112,13 @@ int		main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	vars.data.img = mlx_new_image(vars.mlx, WIN_WIDTH, WIN_HEIGHT);
 	vars.data.addr = mlx_get_data_addr(vars.data.img, &vars.data.bits_per_pixel, &vars.data.line_length, &vars.data.endian);
-	g42_mlx_draw_grid(&vars.data, &vars.map);
+	fdf_init_camera(&vars.cur);
+	fdf_init_view(&vars.map, &vars.cur);
+	fdf_draw_wire(&vars.data, &vars.map, vars.map.screen);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.data.img, 0, 0);
-	mlx_string_put(vars.mlx, vars.win, 50, 50, g42_create_trgb(0, 156, 244, 229), "I'm a text");
 	//mlx_key_hook(vars.win, get_key_code, (void*)0);
-	//mlx_mouse_hook(vars.win, deal_key, (void*)0);
-	mlx_hook(vars.win, ENTERNOTIFY, ENTERWINDOWMASK, mouse_enters, 0);
-	mlx_hook(vars.win, LEAVENOTIFY, LEAVEWINDOWMASK, mouse_exits, 0);
-	mlx_hook(vars.win, RESIZEREQUEST, RESIZEREDIRECTMASK, resize_window_alert, 0);
 	//mlx_hook(vars.win, MOTIONNOTIFY, POINTERMOTIONMASK, track_mouse, &vars);
 	mlx_hook(vars.win, KEYPRESS, KEYPRESSMASK, fdf_handle_keypress, &vars);
-	//mlx_hook(vars.win, KEYPRESS, KEYPRESSMASK, fdf_image_change, &vars);
-	//mlx_hook(vars.win, MotionNotify, PointerMotionMask, mouse_rainbow((void*)0, &new_colour, &img), 0);
-	//mlx_key_hook(vars.win, close_da_window, &vars);
-	//mlx_loop_hook(mlx, render_next_frame, &img);
 	mlx_loop(vars.mlx);
 	return (EXIT_SUCCESS);
 }

@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   g42_2d_to_uv.c                                     :+:      :+:    :+:   */
+/*   fdf_init_camera.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/21 12:03:37 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/28 15:06:19 by jnivala          ###   ########.fr       */
+/*   Created: 2020/10/27 12:20:07 by jnivala           #+#    #+#             */
+/*   Updated: 2020/10/27 14:59:19 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_uv	g42_2d_to_uv(t_vec3 coord, t_map *map, t_cam *cam)
+int		fdf_init_camera(t_cam *cam)
 {
-	t_uv	screen_coord;
-
-	screen_coord.u = (int)(WIN_WIDTH / 2 + coord.x);
-	screen_coord.u -= (int)((map->max_width - 1) * cam->dist / 2);
-	screen_coord.v = (int)(WIN_HEIGHT / 2 - coord.y + MENU_HEIGHT);
-	screen_coord.v += (int)((map->height - 1) * cam->dist / 2);
-	screen_coord.colour = coord.colour;
-	return (screen_coord);
+	cam->ang_x = 0.0;
+	cam->ang_y = 0.0;
+	cam->ang_z = 0.0;
+	cam->dist = 0.0;
+	cam->vector.x = 0.0;
+	cam->vector.y = 0.0;
+	cam->vector.z = 0.0;
+	return (0);
 }

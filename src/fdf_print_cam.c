@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   g42_2d_to_uv.c                                     :+:      :+:    :+:   */
+/*   fdf_print_cam.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/21 12:03:37 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/28 15:06:19 by jnivala          ###   ########.fr       */
+/*   Created: 2020/10/27 10:24:41 by jnivala           #+#    #+#             */
+/*   Updated: 2020/10/27 13:45:01 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "fdf.h"
 
-t_uv	g42_2d_to_uv(t_vec3 coord, t_map *map, t_cam *cam)
+void	fdf_print_cam(t_cam *cur)
 {
-	t_uv	screen_coord;
-
-	screen_coord.u = (int)(WIN_WIDTH / 2 + coord.x);
-	screen_coord.u -= (int)((map->max_width - 1) * cam->dist / 2);
-	screen_coord.v = (int)(WIN_HEIGHT / 2 - coord.y + MENU_HEIGHT);
-	screen_coord.v += (int)((map->height - 1) * cam->dist / 2);
-	screen_coord.colour = coord.colour;
-	return (screen_coord);
+	printf("cur ang_x %f\n", cur->ang_x);
+	printf("cur ang_y %f\n", cur->ang_y);
+	printf("cur ang_z %f\n", cur->ang_z);
+	printf("cur offset_x %f\n", cur->vector.x);
+	printf("cur offset_y %f\n", cur->vector.y);
+	printf("cur scale %f\n", cur->dist);
 }

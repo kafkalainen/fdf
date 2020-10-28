@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_scale_object.c                                 :+:      :+:    :+:   */
+/*   fdf_reset_object.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/22 17:20:11 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/27 14:32:25 by jnivala          ###   ########.fr       */
+/*   Created: 2020/10/27 10:38:24 by jnivala           #+#    #+#             */
+/*   Updated: 2020/10/27 15:18:05 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mlx_linux/mlx.h"
 #include "fdf.h"
-#include "../libft/libft.h"
+#include "../mlx_linux/mlx.h"
 
-int		fdf_scale_object(int keycode, t_vars *vars)
+int		fdf_reset_object(int keycode, t_vars *vars)
 {
+	if (vars->cur.ang_x == 0.0
+		&& vars->cur.ang_y == 0.0 && vars->cur.ang_z == 0.0)
+		return (0);
 	mlx_destroy_image(vars->mlx, vars->data.img);
 	vars->data.img = mlx_new_image(vars->mlx, WIN_WIDTH, WIN_HEIGHT);
 	vars->data.addr = mlx_get_data_addr(vars->data.img,
 		&vars->data.bits_per_pixel, &vars->data.line_length, &vars->data.endian);
-	if (keycode == KEY_1)
+	fdf_init_view(&vars->map, &vars->cur);
+	if (keycode == KEY_R)
 	{
-		g42_mod_pts(&vars->map, &g42_scale_point, 1.1);
-		vars->cur.dist *= 1.1;
-	}
-	if (keycode == KEY_2)
-	{
-		g42_mod_pts(&vars->map, &g42_scale_point, 0.9);
-		vars->cur.dist *= 0.9;
+		vars->cur.ang_x = 0.0;
+		vars->cur.ang_y = 0.0;
+		vars->cur.ang_z = 0.0;
 	}
 	fdf_print_cam(&vars->cur);
 	fdf_translate_coordinates(&vars->map, &vars->cur);

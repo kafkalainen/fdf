@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   g42_2d_to_uv.c                                     :+:      :+:    :+:   */
+/*   fdf_check_valid_depth.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/21 12:03:37 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/28 15:06:19 by jnivala          ###   ########.fr       */
+/*   Created: 2020/10/26 14:47:36 by jnivala           #+#    #+#             */
+/*   Updated: 2020/10/26 14:51:50 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "../libft/libft.h"
 
-t_uv	g42_2d_to_uv(t_vec3 coord, t_map *map, t_cam *cam)
+int		fdf_check_valid_depth(char *str, char *validate)
 {
-	t_uv	screen_coord;
+	size_t	len;
 
-	screen_coord.u = (int)(WIN_WIDTH / 2 + coord.x);
-	screen_coord.u -= (int)((map->max_width - 1) * cam->dist / 2);
-	screen_coord.v = (int)(WIN_HEIGHT / 2 - coord.y + MENU_HEIGHT);
-	screen_coord.v += (int)((map->height - 1) * cam->dist / 2);
-	screen_coord.colour = coord.colour;
-	return (screen_coord);
+	len = ft_strlen(str);
+	while (--len)
+	{
+		if (!(ft_strchr(validate, ft_toupper(str[len]))))
+			return (INVALID_CHARACTERS);
+	}
+	return (0);
 }

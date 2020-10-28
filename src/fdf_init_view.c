@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   g42_mlx_draw_grid.c                                :+:      :+:    :+:   */
+/*   fdf_init_view.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/16 17:43:44 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/22 17:05:42 by jnivala          ###   ########.fr       */
+/*   Created: 2020/10/16 16:23:57 by jnivala           #+#    #+#             */
+/*   Updated: 2020/10/27 15:15:54 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "fdf.h"
-#include "g42.h"
-#include "../libft/libft.h"
-#include <stdio.h>
-#include <stdlib.h>
 
-void		g42_mlx_draw_grid(t_data *img, t_map *map)
+int		fdf_init_view(t_map *map, t_cam *cur)
 {
-	g42_mod_pts(map, &g42_scale_point, 30);
-	fdf_translate_coordinates(map);
-	printf("%p\n", map);
-	printf("%p\n", img);
-	fdf_draw_wire(img, map, map->screen);
+	size_t	i;
+	double	scale;
+
+	i = 0;
+	scale = (double)(WIN_WIDTH) / (double)(map->max_width);
+	cur->dist = scale;
+	while (i < map->coord_amount)
+	{
+		map->proj[i] = map->coord[i];
+		i++;
+	}
+	g42_mod_pts(map, &g42_scale_point, scale);
+	fdf_translate_coordinates(map, cur);
+	return (0);
 }

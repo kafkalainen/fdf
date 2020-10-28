@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   g42_2d_to_uv.c                                     :+:      :+:    :+:   */
+/*   ft_replace_char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/21 12:03:37 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/28 15:06:19 by jnivala          ###   ########.fr       */
+/*   Created: 2020/10/26 16:57:32 by jnivala           #+#    #+#             */
+/*   Updated: 2020/10/26 17:43:57 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include <string.h>
 
-t_uv	g42_2d_to_uv(t_vec3 coord, t_map *map, t_cam *cam)
+size_t	ft_replace_char(char *s, int c, int rep)
 {
-	t_uv	screen_coord;
+	size_t	i;
 
-	screen_coord.u = (int)(WIN_WIDTH / 2 + coord.x);
-	screen_coord.u -= (int)((map->max_width - 1) * cam->dist / 2);
-	screen_coord.v = (int)(WIN_HEIGHT / 2 - coord.y + MENU_HEIGHT);
-	screen_coord.v += (int)((map->height - 1) * cam->dist / 2);
-	screen_coord.colour = coord.colour;
-	return (screen_coord);
+	i = 0;
+	while (*s != '\0')
+	{
+		if (*s == c)
+		{
+			*s = rep;
+			i++;
+		}
+		s++;
+	}
+	return (i);
 }

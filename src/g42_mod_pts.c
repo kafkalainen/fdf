@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 10:21:04 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/22 10:46:39 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/27 13:01:45 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void		g42_mod_pts(t_map *map, void (*f)(t_vec3*, double), double mod)
 	{
 		while (len)
 		{
-			f(&map->coord[i], mod);
+			f(&map->proj[i], mod);
 			i++;
 			len--;
 		}

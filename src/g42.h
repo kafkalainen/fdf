@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 08:32:27 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/26 11:27:29 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/28 15:13:23 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,17 +84,20 @@ typedef struct	s_m3x3 {
 	double	m[3][3];
 }				t_m3x3;
 
-typedef struct	s_projection {
-	float	f_near;
-	float	f_far;
-	float	f_fov;
-	float	f_aspect_ratio;
-	float	f_fov_rad;
-}				t_projection;
+typedef struct	s_pxl_c
+{
+	int			c[36];
+}				t_pxl_c;
+
+
+typedef struct	s_pxl_bet {
+	t_pxl_c		a[26];
+}				t_pxl_bet;
 
 typedef struct	s_uv {
 	int			u;
 	int			v;
+	int			colour;
 }				t_uv;
 
 typedef struct	s_vec3 {
@@ -104,24 +107,23 @@ typedef struct	s_vec3 {
 	int			colour;
 }				t_vec3;
 
-typedef struct	s_tri {
-	t_vec3		tri[3];
-}				t_tri;
-
 typedef struct	s_camera
 {
-	double		angle_x;
-	double		angle_y;
-	double		angle_z;
-	double		distance;
-}				t_camera;
+	double		ang_x;
+	double		ang_y;
+	double		ang_z;
+	double		dist;
+	t_vec3		vector;
+}				t_cam;
 
 
 typedef struct	s_map {
 	t_vec3		*coord;
+	t_vec3		*proj;
 	t_uv		*screen;
 	size_t		height;
-	size_t		depth;
+	size_t		max_depth;
+	size_t		min_depth;
 	size_t		*width;
 	size_t		max_width;
 	size_t		coord_amount;
@@ -140,6 +142,7 @@ typedef struct	s_data {
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+	int			text_size;
 }				t_data;
 
 typedef struct	s_vars {
@@ -147,6 +150,7 @@ typedef struct	s_vars {
 	void		*win;
 	t_data		data;
 	t_map		map;
+	t_cam	cur;
 }				t_vars;
 
 int				g42_create_trgb(int t, int r, int g, int b);
@@ -181,8 +185,6 @@ int				g42_dot_product(t_vec3 *a, t_vec3 *b);
 
 void			g42_cross_product(t_vec3 *a, t_vec3 *b, t_vec3 *cross);
 
-void			g42_mlx_draw_grid(t_data *data, t_map *map);
-
 t_vec3			g42_multi_vec_matrix(const t_vec3 *src, t_m4x4 *x);
 
 void			g42_rotate_x_axis(t_vec3 *vec, double angle);
@@ -199,11 +201,17 @@ void			g42_clip_point(t_vec3 *a);
 
 t_vec3			g42_2d_to_ndc(t_vec3 proj_coord);
 
-t_uv			g42_2d_to_uv(t_vec3 coord);
+t_uv			g42_2d_to_uv(t_vec3 coord, t_map *map, t_cam *cam);
 
 t_uv			g42_ndc_to_raster_space(t_vec3 ndc);
 
 void			g42_mod_pts(t_map *map, void (*f)(t_vec3*, double), double scale);
 
 void			g42_mod_vec(t_map *map, void (*f)(t_vec3*, t_vec3), t_vec3 mod);
+
+void			g42_str_pxl(t_data *data, t_uv coord, char *str);
+
+t_pxl_c			g42_pxl_alphabet(int l, int b, int c);
+
+t_pxl_c			g42_pxl_numbers(int l, int b, int c);
 #endif

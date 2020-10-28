@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_scale_object.c                                 :+:      :+:    :+:   */
+/*   fdf_rotate_object.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/22 17:20:11 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/27 14:32:25 by jnivala          ###   ########.fr       */
+/*   Created: 2020/10/15 14:39:19 by jnivala           #+#    #+#             */
+/*   Updated: 2020/10/28 14:22:43 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,30 @@
 #include "fdf.h"
 #include "../libft/libft.h"
 
-int		fdf_scale_object(int keycode, t_vars *vars)
+int		fdf_rotate_object(int keycode, t_vars *vars)
 {
+	double	mod;
+
 	mlx_destroy_image(vars->mlx, vars->data.img);
 	vars->data.img = mlx_new_image(vars->mlx, WIN_WIDTH, WIN_HEIGHT);
-	vars->data.addr = mlx_get_data_addr(vars->data.img,
-		&vars->data.bits_per_pixel, &vars->data.line_length, &vars->data.endian);
-	if (keycode == KEY_1)
+	vars->data.addr = mlx_get_data_addr(vars->data.img, &vars->data.bits_per_pixel, &vars->data.line_length, &vars->data.endian);
+	if (keycode == KEY_Q || keycode == KEY_E)
 	{
-		g42_mod_pts(&vars->map, &g42_scale_point, 1.1);
-		vars->cur.dist *= 1.1;
+		mod = (keycode == KEY_Q ? 15.0 : -15.0);
+		g42_mod_pts(&vars->map, &g42_rotate_x_axis, mod);
+		vars->cur.ang_x += mod;
 	}
-	if (keycode == KEY_2)
+	if (keycode == KEY_D || KEY_A)
 	{
-		g42_mod_pts(&vars->map, &g42_scale_point, 0.9);
-		vars->cur.dist *= 0.9;
+		mod = (keycode == KEY_D ? 15.0 : -15.0);
+		g42_mod_pts(&vars->map, &g42_rotate_y_axis, mod);
+		vars->cur.ang_y += mod;
+	}
+	if (keycode == KEY_W || keycode == KEY_S)
+	{
+		mod = (keycode == KEY_W ? 15.0 : -15.0);
+		g42_mod_pts(&vars->map, &g42_rotate_z_axis, mod);
+		vars->cur.ang_z += mod;
 	}
 	fdf_print_cam(&vars->cur);
 	fdf_translate_coordinates(&vars->map, &vars->cur);

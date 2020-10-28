@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 15:41:15 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/23 09:35:28 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/27 13:34:07 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,17 @@ int		fdf_move_object(int keycode, t_vars *vars)
 	if (keycode == UP || keycode == DOWN)
 	{
 		a.y = keycode == UP ? 15.0 : -15.0;
+		vars->cur.vector.y += a.y;
 		g42_mod_vec(&vars->map, &g42_translate, a);
 	}
 	if (keycode == RIGHT || keycode == LEFT)
 	{
 		a.x = keycode == RIGHT ? 15.0 : -15.0;
+		vars->cur.vector.x += a.x;
 		g42_mod_vec(&vars->map, &g42_translate, a);
 	}
-	fdf_translate_coordinates(&vars->map);
+	fdf_print_cam(&vars->cur);
+	fdf_translate_coordinates(&vars->map, &vars->cur);
 	fdf_draw_wire(&vars->data, &vars->map, vars->map.screen);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->data.img, 0, 0);
 	return (0);
