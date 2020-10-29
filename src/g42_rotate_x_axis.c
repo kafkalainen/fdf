@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 13:12:32 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/20 15:17:13 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/29 09:03:58 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,17 @@
 void	g42_rotate_x_axis(t_vec3 *vec, double angle)
 {
 	t_m4x4	m;
+	double	c;
+	double	s;
 
-	m.m[0][0] = 1;
-	m.m[0][1] = 0;
-	m.m[0][2] = 0;
-	m.m[0][3] = 0;
-	m.m[1][0] = 0;
-	m.m[1][1] = cos(angle * (PI / 180));
-	m.m[1][2] = sin(angle * (PI / 180));
-	m.m[1][3] = 0;
-	m.m[2][0] = 0;
-	m.m[2][1] = -sin(angle * (PI / 180));
-	m.m[2][2] = cos(angle * (PI / 180));
-	m.m[2][3] = 0;
-	m.m[3][0] = 0;
-	m.m[3][1] = 0;
-	m.m[3][2] = 0;
-	m.m[3][3] = 1;
+	c = cos(angle * (PI / 180));
+	s = sin(angle * (PI / 180));
+	m = (t_m4x4)
+	{{
+		{ 1, 0, 0, 0},
+		{ 0, c, s, 0},
+		{ 0, -s, c, 0},
+		{ 0, 0, 0, 1},
+	}};
 	*vec = g42_multi_vec_matrix(vec, &m);
 }

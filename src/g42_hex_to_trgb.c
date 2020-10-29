@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   g42_2d_to_uv.c                                     :+:      :+:    :+:   */
+/*   g42_hex_to_trgb.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/21 12:03:37 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/28 16:16:32 by jnivala          ###   ########.fr       */
+/*   Created: 2020/10/28 19:09:15 by jnivala           #+#    #+#             */
+/*   Updated: 2020/10/29 08:50:02 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "g42.h"
 
-t_uv	g42_2d_to_uv(t_vec3 coord, t_map *map, t_cam *cam)
+t_colour	g42_hex_to_trgb(int trgb)
 {
-	t_uv	screen_coord;
+	t_colour	colour;
 
-	screen_coord.u = (int)(WIN_WIDTH / 2 + coord.x);
-	screen_coord.u -= (int)((map->max_width - 1) * cam->dist / 2);
-	screen_coord.v = (int)(MENU_HEIGHT + (WIN_HEIGHT - MENU_HEIGHT) / 2);
-	screen_coord.v += (int)((map->height - 1) * cam->dist / 4) - coord.y;
-	screen_coord.colour = coord.colour;
-	return (screen_coord);
+	colour.t = g42_get_transparency(trgb) / 256 / 256 / 256;
+	colour.r = g42_get_red(trgb) / 256 / 256;
+	colour.g = g42_get_green(trgb) / 256;
+	colour.b = g42_get_blue(trgb);
+	return (colour);
 }

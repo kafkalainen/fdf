@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   g42_2d_to_uv.c                                     :+:      :+:    :+:   */
+/*   g42_trgb_to_hex.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/21 12:03:37 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/28 16:16:32 by jnivala          ###   ########.fr       */
+/*   Created: 2020/10/29 08:52:24 by jnivala           #+#    #+#             */
+/*   Updated: 2020/10/29 08:54:09 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "g42.h"
 
-t_uv	g42_2d_to_uv(t_vec3 coord, t_map *map, t_cam *cam)
+int		g42_trgb_to_hex(t_colour trgb)
 {
-	t_uv	screen_coord;
-
-	screen_coord.u = (int)(WIN_WIDTH / 2 + coord.x);
-	screen_coord.u -= (int)((map->max_width - 1) * cam->dist / 2);
-	screen_coord.v = (int)(MENU_HEIGHT + (WIN_HEIGHT - MENU_HEIGHT) / 2);
-	screen_coord.v += (int)((map->height - 1) * cam->dist / 4) - coord.y;
-	screen_coord.colour = coord.colour;
-	return (screen_coord);
+	return(trgb.t << 24 | trgb.r << 16 | trgb.g << 8 | trgb.b);
 }

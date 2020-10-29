@@ -6,7 +6,7 @@
 #    By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/03 18:33:41 by joonasniv         #+#    #+#              #
-#    Updated: 2020/10/28 14:44:11 by jnivala          ###   ########.fr        #
+#    Updated: 2020/10/29 08:53:47 by jnivala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,8 @@ SRC = $(addprefix $(source_dir)/,\
 	g42_str_pxl.c\
 	g42_pxl_alphabet.c\
 	g42_pxl_numbers.c\
+	g42_hex_to_trgb.c\
+	g42_trgb_to_hex.c\
 	fdf_handle_keypress.c\
 	fdf_draw_wire.c\
 	fdf_draw_line.c\

@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 16:32:21 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/28 14:45:56 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/28 16:27:22 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ size_t	fdf_count_height(char const *s, t_map *map);
 
 size_t	*fdf_count_width(char const *s, t_map *map);
 
-double	fdf_depth_parser(char *elem);
+double	fdf_depth_parser(t_map *map, char *elem);
 
 double	fdf_double_parser(int begin, int end);
 

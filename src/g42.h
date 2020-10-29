@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 08:32:27 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/28 15:44:14 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/29 08:51:17 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,12 @@
 # define PI 3.14159265
 # include <string.h>
 
+typedef struct	s_counter {
+	size_t	i;
+	size_t	j;
+	size_t	k;
+}				t_counter;
+
 typedef struct	s_m4x4 {
 	double	m[4][4];
 }				t_m4x4;
@@ -88,11 +94,6 @@ typedef struct	s_pxl_c
 {
 	int			c[36];
 }				t_pxl_c;
-
-
-typedef struct	s_pxl_bet {
-	t_pxl_c		a[26];
-}				t_pxl_bet;
 
 typedef struct	s_uv {
 	int			u;
@@ -114,6 +115,7 @@ typedef struct	s_camera
 	double		ang_z;
 	double		dist;
 	t_vec3		vector;
+	int			colour;
 }				t_cam;
 
 
@@ -214,4 +216,8 @@ void			g42_str_pxl(t_data *data, t_uv coord, char *str);
 t_pxl_c			g42_pxl_alphabet(int l, int b, int c);
 
 t_pxl_c			g42_pxl_numbers(int l, int b, int c);
+
+t_colour		g42_hex_to_trgb(int trgb);
+
+int				g42_trgb_to_hex(t_colour trgb);
 #endif

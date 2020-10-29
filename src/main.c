@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 10:47:56 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/28 15:06:41 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/29 08:50:00 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,6 @@ int	track_mouse(int x,int y, void *p)
 		printf("Mouse moving in window, at %dx%d.\n",x,y);
 	}
 	return (0);
-}
-
-t_colour	fdf_return_colour_as_struct(int trgb)
-{
-	t_colour	colour;
-
-	colour.t = g42_get_transparency(trgb) / 256 / 256 / 256;
-	colour.r = g42_get_red(trgb) / 256 / 256;
-	colour.g = g42_get_green(trgb) / 256;
-	colour.b = g42_get_blue(trgb);
-	return (colour);
 }
 
 void	fdf_rainbow_function(t_colour *colour)

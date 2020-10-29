@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 12:20:07 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/27 14:59:19 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/28 18:52:40 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ int		fdf_init_camera(t_cam *cam)
 	cam->vector.x = 0.0;
 	cam->vector.y = 0.0;
 	cam->vector.z = 0.0;
+	cam->colour = 0xFF40E0D0;
 	return (0);
 }

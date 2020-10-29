@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_init_view.c                                    :+:      :+:    :+:   */
+/*   fdf_colour_scale_coord.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/16 16:23:57 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/28 18:52:36 by jnivala          ###   ########.fr       */
+/*   Created: 2020/10/28 16:59:02 by jnivala           #+#    #+#             */
+/*   Updated: 2020/10/29 08:50:12 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "g42.h"
 #include "fdf.h"
 
-int		fdf_init_view(t_map *map, t_cam *cur)
+int		fdf_colour_scale_coord(t_map *map, t_vec3 *proj, t_cam *cur)
 {
-	size_t	i;
-	double	scale;
+	double		div;
+	double		scaler;
+	int			min_colour;
+	size_t		i;
+	t_colour	trgb;
 
+	scaler = map->max_depth - map->min_depth;
+	min_colour = 0x00000000;
+	trgb = g42_hex_to_trgb(cur->colour);
 	i = 0;
-	scale = (double)(WIN_WIDTH) / (double)(map->max_width);
-	cur->dist = scale;
 	while (i < map->pts)
 	{
-		map->proj[i] = map->coord[i];
-		i++;
+		div = (double)((map->coord[i].y - map->min_depth) / scaler);
+		trgb.r = (int)(div * trgb.r);
+		trgb.g = (int)(div * trgb.g);
+		trgb.b = (int)(div * trgb.b);
+
 	}
-	g42_mod_pts(map, &g42_scale_point, scale);
-	fdf_translate_coordinates(map, cur);
-	return (0);
+
 }
