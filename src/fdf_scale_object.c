@@ -6,13 +6,14 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 17:20:11 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/27 14:32:25 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/29 10:58:21 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mlx_linux/mlx.h"
 #include "fdf.h"
 #include "../libft/libft.h"
+#include "stdio.h"
 
 int		fdf_scale_object(int keycode, t_vars *vars)
 {
@@ -32,7 +33,7 @@ int		fdf_scale_object(int keycode, t_vars *vars)
 	}
 	fdf_print_cam(&vars->cur);
 	fdf_translate_coordinates(&vars->map, &vars->cur);
-	fdf_draw_wire(&vars->data, &vars->map, vars->map.screen);
+	fdf_draw_wire(&vars->data, &vars->map, vars->map.screen, vars->cur.colour);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->data.img, 0, 0);
 	return (0);
 }

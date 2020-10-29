@@ -6,7 +6,7 @@
 #    By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/03 18:33:41 by joonasniv         #+#    #+#              #
-#    Updated: 2020/10/29 08:53:47 by jnivala          ###   ########.fr        #
+#    Updated: 2020/10/29 13:11:50 by jnivala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SRC = $(addprefix $(source_dir)/,\
 	g42_pxl_numbers.c\
 	g42_hex_to_trgb.c\
 	g42_trgb_to_hex.c\
+	g42_colour_scale_coord.c\
 	fdf_handle_keypress.c\
 	fdf_draw_wire.c\
 	fdf_draw_line.c\
@@ -77,6 +78,7 @@ SRC = $(addprefix $(source_dir)/,\
 	fdf_draw_background.c\
 	fdf_draw_instructions.c\
 	fdf_draw_title.c\
+	fdf_count_colour_scale.c\
 )
 OBJ = $(SRC:.c=.o)
 

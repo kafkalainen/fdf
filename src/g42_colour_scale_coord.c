@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   g42_rotate_x_axis.c                                :+:      :+:    :+:   */
+/*   g42_colour_scale_coord.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/20 13:12:32 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/29 10:15:51 by jnivala          ###   ########.fr       */
+/*   Created: 2020/10/28 16:59:02 by jnivala           #+#    #+#             */
+/*   Updated: 2020/10/29 09:41:27 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "g42.h"
-#include "math.h"
-/* 1		0		0
-** 0  cos(theta) -sin(theta)
-** 0  sin(theta) cos(theta)
-*/
-void	g42_rotate_x_axis(t_vec3 *vec, double angle)
+
+int		g42_colour_scale_coord(double scale, int colour)
 {
-	t_m4x4	m;
+	t_colour	trgb;
 
-	double c;
-	double s;
-
-	c = cos(angle * (PI / 180));
-	s = sin(angle * (PI / 180));
-	m = (t_m4x4)
-	{{
-		{ 1, 0, 0, 0},
-		{ 0, c, s, 0},
-		{ 0, -s, c, 0},
-		{ 0, 0, 0, 1},
-	}};
-	*vec = g42_multi_vec_matrix(vec, &m);
+	trgb = g42_hex_to_trgb(colour);
+	trgb.r = (int)(scale * trgb.r);
+	trgb.g = (int)(scale * trgb.g);
+	trgb.b = (int)(scale * trgb.b);
+	return (g42_trgb_to_hex(trgb));
 }

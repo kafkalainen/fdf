@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_colour_scale_coord.c                           :+:      :+:    :+:   */
+/*   fdf_count_colour_scale.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/28 16:59:02 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/29 08:50:12 by jnivala          ###   ########.fr       */
+/*   Created: 2020/10/29 13:03:12 by jnivala           #+#    #+#             */
+/*   Updated: 2020/10/29 13:09:39 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "g42.h"
-#include "fdf.h"
 
-int		fdf_colour_scale_coord(t_map *map, t_vec3 *proj, t_cam *cur)
+int		fdf_count_colour_scale(t_map *map)
 {
-	double		div;
-	double		scaler;
-	int			min_colour;
-	size_t		i;
-	t_colour	trgb;
+	size_t	i;
+	double	minmax_dist;
+	double	c_dist;
 
-	scaler = map->max_depth - map->min_depth;
-	min_colour = 0x00000000;
-	trgb = g42_hex_to_trgb(cur->colour);
 	i = 0;
+	minmax_dist = (double)((map->max_depth - map->min_depth));
 	while (i < map->pts)
 	{
-		div = (double)((map->coord[i].y - map->min_depth) / scaler);
-		trgb.r = (int)(div * trgb.r);
-		trgb.g = (int)(div * trgb.g);
-		trgb.b = (int)(div * trgb.b);
-
+		c_dist = (double)(map->coord[i].y - map->min_depth);
+		map->coord[i].c_scale = (double)(c_dist / minmax_dist);
+		i++;
 	}
-
+	return (0);
 }

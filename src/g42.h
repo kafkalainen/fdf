@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 08:32:27 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/29 08:51:17 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/29 13:16:36 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,14 @@ typedef struct	s_pxl_c
 typedef struct	s_uv {
 	int			u;
 	int			v;
-	int			colour;
+	double		s_scale;
 }				t_uv;
 
 typedef struct	s_vec3 {
 	double		x;
 	double		y;
 	double		z;
-	int			colour;
+	double		c_scale;
 }				t_vec3;
 
 typedef struct	s_camera
@@ -157,6 +157,8 @@ typedef struct	s_vars {
 
 int				g42_create_trgb(int t, int r, int g, int b);
 
+int				g42_colour_scale_coord(double scale, int colour);
+
 int				g42_get_transparency(int trgb);
 
 int				g42_get_red(int trgb);
@@ -203,7 +205,7 @@ void			g42_clip_point(t_vec3 *a);
 
 t_vec3			g42_2d_to_ndc(t_vec3 proj_coord);
 
-t_uv			g42_2d_to_uv(t_vec3 coord, t_map *map, t_cam *cam);
+t_uv			g42_2d_to_uv(t_vec3 *coord, t_map *map, t_cam *cam);
 
 t_uv			g42_ndc_to_raster_space(t_vec3 ndc);
 

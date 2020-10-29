@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 11:41:04 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/27 15:19:30 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/29 09:37:14 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		fdf_iso_object(int keycode, t_vars *vars)
 	}
 	fdf_print_cam(&vars->cur);
 	fdf_translate_coordinates(&vars->map, &vars->cur);
-	fdf_draw_wire(&vars->data, &vars->map, vars->map.screen);
+	fdf_draw_wire(&vars->data, &vars->map, vars->map.screen, vars->cur.colour);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->data.img, 0, 0);
 	return (0);
 }

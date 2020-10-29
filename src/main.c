@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 10:47:56 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/29 08:50:00 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/29 10:38:30 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,6 @@ void	fdf_rainbow_function(t_colour *colour)
 	}
 }
 
-/*int	track_mouse(int x,int y, void *p)
-{
-	if (p)
-	{
-		fdf_rainbow_function(colour);
-		my_mlx_box_put(img, 5, 5, fdf_create_trgb(colour->t, colour->r, colour->g, colour->b), 10);
-		printf("Something is moving.");
-	}
-	return (0);
-}*/
-
 int		main(int argc, char **argv)
 {
 	t_vars		vars;
@@ -103,7 +92,7 @@ int		main(int argc, char **argv)
 	vars.data.addr = mlx_get_data_addr(vars.data.img, &vars.data.bits_per_pixel, &vars.data.line_length, &vars.data.endian);
 	fdf_init_camera(&vars.cur);
 	fdf_init_view(&vars.map, &vars.cur);
-	fdf_draw_wire(&vars.data, &vars.map, vars.map.screen);
+	fdf_draw_wire(&vars.data, &vars.map, vars.map.screen, vars.cur.colour);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.data.img, 0, 0);
 	//mlx_key_hook(vars.win, get_key_code, (void*)0);
 	//mlx_hook(vars.win, MOTIONNOTIFY, POINTERMOTIONMASK, track_mouse, &vars);

@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 16:32:21 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/28 16:27:22 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/29 13:11:29 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ double	fdf_depth_parser(t_map *map, char *elem);
 
 double	fdf_double_parser(int begin, int end);
 
-void	fdf_draw_wire(t_data *data, t_map *map, t_uv *coord);
+void	fdf_draw_wire(t_data *data, t_map *map, t_uv *coord, int colour);
 
-void	fdf_draw_line(t_data *data ,t_uv p0, t_uv p1, int colour);
+void	fdf_draw_line(t_data *data, t_uv p0, t_uv p1, int colour);
 
 int		fdf_draw_menu(t_data *data, int colour);
 
@@ -87,5 +87,7 @@ int		fdf_scale_object(int keycode, t_vars *vars);
 t_uv	*fdf_translate_coordinates(t_map *map, t_cam *cam);
 
 void	fdf_print_cam(t_cam *cur);
+
+int		fdf_count_colour_scale(t_map *map);
 
 #endif

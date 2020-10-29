@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 10:47:01 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/23 13:37:18 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/29 10:46:26 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void		g42_mlx_draw_line_bre(t_data *data, t_uv p0, t_uv p1, int colour)
 	err = (double)(delta.x > delta.y ? delta.x : -delta.y / 2);
 	while (p0.u != p1.u || p0.v != p1.v)
 	{
-		g42_mlx_pixel_put(data, p0.u, p0.v, colour);
+		g42_mlx_pixel_put(data, p0.u, p0.v, g42_colour_scale_coord(p0.s_scale, colour));
+		//g42_mlx_pixel_put(data, p0.u, p0.v, colour);
 		e2 = err;
 		if (e2 > -delta.x)
 		{

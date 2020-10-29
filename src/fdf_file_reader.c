@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 14:30:47 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/28 16:33:36 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/29 13:10:23 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,6 @@ int			fdf_file_reader(t_map *map, char *filename)
 	{
 		if (fdf_read_function(fd, &str))
 			ft_putendl_fd("ERROR: Memory allocation failed while reading map.", 2);
-		//ft_putendl_fd(str, 2);
 		err = fdf_check_legal_characters(str);
 		if (err == INVALID_CHARACTERS)
 			ft_putendl_fd("ERROR: Invalid line.", 2);
@@ -141,6 +140,7 @@ int			fdf_file_reader(t_map *map, char *filename)
 			ft_putendl_fd("ERROR: Memory allocation failed while reading map.", 2);
 		ft_putendl_fd("Memory allocation succeeded, reading coordinates.", 1);
 		err = fdf_read_coord(map, &arr);
+		err = fdf_count_colour_scale(map);
 		//mypause();
 	}
 	close(fd);
