@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 08:43:38 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/27 15:34:56 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/30 18:26:07 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int		fdf_handle_keypress(int keycode, t_vars *vars)
 {
 	if (vars && keycode == ESC)
 	{
-		// mlx_destroy_image(vars->mlx, vars->data.img);
-		// mlx_destroy_window(vars->mlx, vars->win);
-		// free(vars->mlx);
+		mlx_destroy_image(vars->mlx, vars->data->img);
+		mlx_destroy_window(vars->mlx, vars->win);
+		fdf_clean(&vars);
 		exit(EXIT_SUCCESS);
 	}
 	if (vars && (keycode == KEY_D || keycode == KEY_W

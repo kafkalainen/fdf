@@ -6,7 +6,7 @@
 #    By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/26 13:08:18 by jnivala           #+#    #+#              #
-#    Updated: 2020/10/26 16:59:58 by jnivala          ###   ########.fr        #
+#    Updated: 2020/10/30 10:51:36 by jnivala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,6 +86,8 @@ SRC = \
 ./ft_count_wrds.c\
 ./ft_nb_len.c\
 ./ft_replace_char.c\
+./ft_pow_of_2.c\
+./ft_sqrt.c\
 
 INC = ./libft.h ./get_next_line.h
 

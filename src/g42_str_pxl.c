@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 08:38:48 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/28 14:53:32 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/30 18:36:06 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 #include "../libft/libft.h"
 #include <stdlib.h>
 
-static void		g42_draw_letter(t_data *data, int x, int y, int	*letter)
+static void		g42_draw_letter(t_data *data, int x, int y, int *letter)
 {
 	t_uv	cur;
 	int		c;
 	int		m;
+	t_uv	mod;
 
 	cur.v = 0;
 	m = data->text_size;
@@ -28,7 +29,9 @@ static void		g42_draw_letter(t_data *data, int x, int y, int	*letter)
 		while (cur.u < 5)
 		{
 			c = letter[cur.u + cur.v * 5];
-			g42_mlx_solid_square(data, cur.u * m + x, cur.v * m + y, c, m);
+			mod.u = cur.u * m + x;
+			mod.v = cur.v * m + y;
+			g42_solid_square(data, mod, c, m);
 			cur.u++;
 		}
 		cur.v++;
@@ -57,7 +60,7 @@ static void		g42_handle_letter(t_data *data, int **tab, t_uv coord, int c)
 	g42_draw_letter(data, coord.u, coord.v, *tab);
 }
 
-void	g42_str_pxl(t_data *data, t_uv coord, char *str)
+void			g42_str_pxl(t_data *data, t_uv coord, char *str)
 {
 	int		c;
 	int		*letter;

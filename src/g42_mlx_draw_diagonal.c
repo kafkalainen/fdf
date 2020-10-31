@@ -6,14 +6,14 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 13:14:17 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/24 09:56:42 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/30 18:38:19 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "g42.h"
 #include "../libft/libft.h"
 
-void	g42_mlx_draw_diagonal(t_data *data ,t_uv p0, t_uv p1, int colour)
+void	g42_mlx_draw_diagonal(t_data *data, t_uv p0, t_uv p1, int colour)
 {
 	t_uv	delta;
 	t_uv	max;
@@ -29,9 +29,6 @@ void	g42_mlx_draw_diagonal(t_data *data ,t_uv p0, t_uv p1, int colour)
 	{
 		while (min.u < max.u)
 		{
-			// y = x + b
-			// 0 = x + b
-			// x = -b
 			g42_mlx_pixel_put(data, min.u, min.v, colour);
 		}
 	}

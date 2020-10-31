@@ -6,12 +6,11 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 09:20:19 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/29 09:37:18 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/30 11:34:09 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 void		fdf_draw_wire(t_data *data, t_map *map, t_uv *coord, int colour)
 {
@@ -31,14 +30,9 @@ void		fdf_draw_wire(t_data *data, t_map *map, t_uv *coord, int colour)
 				fdf_draw_line(data, res, coord[fdf_idx(x, z + 1, map)], colour);
 			if (x < map->width[z] - 1)
 				fdf_draw_line(data, res, coord[fdf_idx(x + 1, z, map)], colour);
-		//printf("It is Z %ld and X %ld\n", z, x);
-		//printf("Index is %ld\n", fdf_idx(x, z, map));
-		x++;
+			x++;
 		}
-	z++;
+		z++;
 	}
 	fdf_draw_menu(data, 0xff5ca08e);
 }
-
-//printf("Z[coord %ld]: Drawing from x %d y %d to x %d y %d coordinate\n", fdf_idx(x, z + 1, map), res.u, res.v, coord[fdf_idx(x, z + 1, map)].u, coord[fdf_idx(x, z + 1, map)].v);
-// printf("X[coord %ld]: Drawing from x %d y %d to x %d y %d coordinate\n", fdf_idx(x + 1, z, map), res.u, res.v, coord[fdf_idx(x + 1, z, map)].u, coord[fdf_idx(x + 1, z, map)].v);

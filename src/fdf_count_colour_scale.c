@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 13:03:12 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/29 13:09:39 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/30 13:37:40 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		fdf_count_colour_scale(t_map *map)
 	while (i < map->pts)
 	{
 		c_dist = (double)(map->coord[i].y - map->min_depth);
-		map->coord[i].c_scale = (double)(c_dist / minmax_dist);
+		map->proj[i].c_scale = (double)(c_dist / minmax_dist);
 		i++;
 	}
 	return (0);

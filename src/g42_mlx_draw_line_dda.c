@@ -6,14 +6,14 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 09:41:04 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/22 17:14:09 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/30 18:22:07 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "g42.h"
 
-void		g42_mlx_draw_line_dda(t_data *data, t_uv p0, t_uv p1, int colour)
+void		g42_mlx_draw_line_dda(t_data *data, t_uv p0, t_uv p1, int c)
 {
 	t_vec3		delta;
 	t_vec3		pixel;
@@ -28,7 +28,7 @@ void		g42_mlx_draw_line_dda(t_data *data, t_uv p0, t_uv p1, int colour)
 	pixel.y = p0.v;
 	while (pixels)
 	{
-		g42_mlx_pixel_put(data, (int)pixel.x, (int)pixel.y, colour);
+		g42_mlx_pixel_put(data, (int)pixel.x, (int)pixel.y, c);
 		pixel.x += delta.x;
 		pixel.y += delta.y;
 		--pixels;

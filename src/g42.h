@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 08:32:27 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/29 13:16:36 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/31 06:49:41 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ typedef struct	s_camera
 	int			colour;
 }				t_cam;
 
-
 typedef struct	s_map {
 	t_vec3		*coord;
 	t_vec3		*proj;
@@ -141,8 +140,8 @@ typedef struct	s_colour {
 typedef struct	s_data {
 	void		*img;
 	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
+	int			bpp;
+	int			llen;
 	int			endian;
 	int			text_size;
 }				t_data;
@@ -150,14 +149,14 @@ typedef struct	s_data {
 typedef struct	s_vars {
 	void		*mlx;
 	void		*win;
-	t_data		data;
-	t_map		map;
-	t_cam	cur;
+	t_data		*data;
+	t_map		*map;
+	t_cam		cur;
 }				t_vars;
 
 int				g42_create_trgb(int t, int r, int g, int b);
 
-int				g42_colour_scale_coord(double scale, int colour);
+int				g42_c_grad(t_uv p0, t_uv p1, t_uv s, int colour);
 
 int				g42_get_transparency(int trgb);
 
@@ -171,17 +170,15 @@ int				g42_invert_trgb(int t, int r, int g, int b);
 
 void			g42_mlx_pixel_put(t_data *data, int x, int y, int color);
 
-void			g42_mlx_solid_square(t_data *data, int off_x, int off_y, int color, int size);
+void			g42_solid_square(t_data *data, t_uv offset, int c, int s);
 
-void			g42_mlx_draw_line_dda(t_data *data, t_uv p0, t_uv p1, int colour);
+void			g42_mlx_draw_line_dda(t_data *data, t_uv p0, t_uv p1, int c);
 
-void			g42_mlx_draw_line_bre(t_data *data, t_uv p0, t_uv p1, int colour);
+void			g42_draw_line_bre(t_data *data, t_uv p0, t_uv p1, int c);
 
-void			g42_mlx_draw_line_wu(t_data *data, t_uv p0, t_uv p1, int colour);
+void			g42_mlx_draw_x_y_line(t_data *data, t_uv p0, t_uv p1, int c);
 
-void			g42_mlx_draw_x_y_line(t_data *data, t_uv p0, t_uv p1, int colour);
-
-void			g42_mlx_draw_diagonal(t_data *data ,t_uv p0, t_uv p1, int colour);
+void			g42_mlx_draw_diagonal(t_data *data, t_uv p0, t_uv p1, int c);
 
 void			g42_normalize_vector(t_vec3 *v);
 
@@ -205,11 +202,11 @@ void			g42_clip_point(t_vec3 *a);
 
 t_vec3			g42_2d_to_ndc(t_vec3 proj_coord);
 
-t_uv			g42_2d_to_uv(t_vec3 *coord, t_map *map, t_cam *cam);
+t_uv			g42_2d_to_uv(t_vec3 coord, t_map *map, t_cam *cam);
 
 t_uv			g42_ndc_to_raster_space(t_vec3 ndc);
 
-void			g42_mod_pts(t_map *map, void (*f)(t_vec3*, double), double scale);
+void			g42_mod_pts(t_map *map, void (*f)(t_vec3*, double), double mod);
 
 void			g42_mod_vec(t_map *map, void (*f)(t_vec3*, t_vec3), t_vec3 mod);
 

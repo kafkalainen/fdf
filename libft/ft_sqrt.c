@@ -1,17 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   g42_mlx_draw_line_wu.c                             :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/16 15:25:51 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/23 18:22:21 by jnivala          ###   ########.fr       */
+/*   Created: 2020/10/30 10:44:59 by jnivala           #+#    #+#             */
+/*   Updated: 2020/10/30 18:42:26 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "math.h"
-#include "fdf.h"
-#include "../libft/libft.h"
+double	ft_sqrt(double base)
+{
+	double n;
+	double list;
 
-void g42_mlx_draw_line_wu(t_data *data, t_uv p0, t_uv p1, int colour);
+	n = base / 2.0;
+	list = 0.0;
+	while (n != list)
+	{
+		list = n;
+		n = (n + base / n) / 2.0;
+	}
+	return (n);
+}

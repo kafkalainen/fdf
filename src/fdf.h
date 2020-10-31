@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 16:32:21 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/29 13:11:29 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/31 08:41:33 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 # define MENU_HEIGHT 200
-# define BUFF_SIZE 1024
+# define BUFF_SIZE 4
 # include "g42.h"
 # include <string.h>
 
@@ -58,9 +58,13 @@ int		fdf_draw_menu(t_data *data, int colour);
 
 int		fdf_draw_background(t_data *data);
 
-int		fdf_draw_instructions(t_data *data, t_uv coord);
+int		fdf_draw_instructions_right(t_data *data, t_uv coord);
+
+int		fdf_draw_instructions_left(t_data *data, t_uv coord);
 
 void	fdf_draw_title(t_data *data, t_uv coord);
+
+int		fdf_error(char *message);
 
 int		fdf_file_reader(t_map *map, char *filename);
 
@@ -89,5 +93,7 @@ t_uv	*fdf_translate_coordinates(t_map *map, t_cam *cam);
 void	fdf_print_cam(t_cam *cur);
 
 int		fdf_count_colour_scale(t_map *map);
+
+t_vars	*fdf_clean(t_vars **vars);
 
 #endif

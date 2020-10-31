@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_close_window.c                                 :+:      :+:    :+:   */
+/*   fdf_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/15 09:03:39 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/22 10:27:47 by jnivala          ###   ########.fr       */
+/*   Created: 2020/10/30 16:38:23 by jnivala           #+#    #+#             */
+/*   Updated: 2020/10/30 18:40:48 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mlx_linux/mlx.h"
-#include "fdf.h"
+#include "../libft/libft.h"
 
-int		fdf_close_window(int keycode, t_vars *vars)
+int		fdf_error(char *message)
 {
-	if (keycode == ESC && vars)
-	{
-		mlx_destroy_image(vars->mlx, vars->data.img);
-		mlx_destroy_window(vars->mlx, vars->win);
-	}
-	return (0);
+	ft_putendl_fd(message, 2);
+	return (1);
 }

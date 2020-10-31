@@ -6,14 +6,14 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 16:41:15 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/15 08:39:07 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/30 11:30:52 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int		g42_invert_trgb(int t, int r, int g, int b)
 {
-    r = 255 - r;
-    g = 255 - g;
-    b = 255 - b;
-    return(t << 24 | r << 16 | g << 8 | b);
+	r = 255 - r;
+	g = 255 - g;
+	b = 255 - b;
+	return (t << 24 | r << 16 | g << 8 | b);
 }

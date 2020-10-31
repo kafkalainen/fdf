@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 10:33:38 by jnivala           #+#    #+#             */
-/*   Updated: 2020/07/20 11:49:23 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/30 17:05:56 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**ft_strarrdel(char ***as, size_t y)
 	{
 		while (i < y)
 		{
-			ft_strdel(&(*(*(as + i))));
+			ft_strdel((*(as) + i));
 			i++;
 		}
 		free(*as);

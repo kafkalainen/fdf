@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 08:52:24 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/29 08:54:09 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/30 13:33:29 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int		g42_trgb_to_hex(t_colour trgb)
 {
-	return(trgb.t << 24 | trgb.r << 16 | trgb.g << 8 | trgb.b);
+	return (trgb.t << 24 | trgb.r << 16 | trgb.g << 8 | trgb.b);
 }

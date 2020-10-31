@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 14:35:57 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/26 17:44:22 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/30 10:50:01 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void				*ft_memcpy(void *dest, const void *src, size_t n);
 void				ft_memdel(void **ap);
 void				*ft_memmove(void *dest, const void *src, size_t n);
 int					ft_nb_len(int value, int base);
+double				ft_pow_of_2(double base, double exponent);
 void				ft_putchar(char c);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putendl(char const *s);
@@ -63,6 +64,7 @@ void				ft_putnbr_fd(int n, int fd);
 void				ft_putstr(char const *s);
 void				ft_putstr_fd(char const *s, int fd);
 size_t				ft_replace_char(char *s, int c, int rep);
+double				ft_sqrt(double base);
 char				**ft_strarrnew(size_t arr_len, char const *str);
 char				**ft_strarrdel(char ***as, size_t size);
 size_t				ft_strlen(const char *s);

@@ -6,39 +6,52 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 10:53:05 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/26 14:09:30 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/31 08:59:54 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <stdlib.h>
 #include "fdf.h"
+#include "../libft/libft.h"
 
-size_t	*fdf_count_width(char const *s, t_map *map)
+static size_t	fdf_row_width(const char *s)
 {
-	size_t		j;
+	size_t	width;
 
-	j = 0;
-	map->max_width = 0;
-	if (!(map->width = (size_t*)malloc(sizeof(*(map->width)) * map->height + 1)))
-		return (NULL);
-	while (*s != '\0')
+	width = 0;
+	while (*s != '\n' && *s != '\0')
 	{
-		map->width[j] = 0;
-		while (*s != '\n' && *s != '\0')
-		{
-			while (*s == ' ' && *s != '\0')
-				s++;
-			if (*s != ' ' && *s != '\n' && *s != '\0')
-				map->width[j]++;
-			while (*s != ' ' && *s != '\n' && *s != '\0')
-				s++;
-		}
-		if (*s == '\n')
+		while (*s == ' ' && *s != '\0')
 			s++;
-		if (map->width[j] > map->max_width)
-			map->max_width = map->width[j];
-		j++;
+		if (*s != ' ' && *s != '\n' && *s != '\0')
+			width++;
+		while (*s != ' ' && *s != '\n' && *s != '\0')
+			s++;
+	}
+	return (width);
+}
+
+size_t			*fdf_count_width(char const *s, t_map *map)
+{
+	size_t		i;
+	char		*nl;
+
+	i = 0;
+	nl = (char*)s;
+	map->max_width = 0;
+	map->width = (size_t*)malloc(sizeof(*(map->width)) * map->height + 1);
+	if (!(map->width))
+		return (NULL);
+	while (i < map->height)
+	{
+		map->width[i] = fdf_row_width(nl);
+		nl = ft_strchr(nl, '\n');
+		if (nl != NULL && *nl == '\n')
+			nl++;
+		if (map->width[i] > map->max_width)
+			map->max_width = map->width[i];
+		i++;
 	}
 	return (map->width);
 }

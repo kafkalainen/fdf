@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   g42_rotate_x_axis.c                                :+:      :+:    :+:   */
+/*   fdf_clean.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/20 13:12:32 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/30 18:20:21 by jnivala          ###   ########.fr       */
+/*   Created: 2020/10/30 17:10:09 by jnivala           #+#    #+#             */
+/*   Updated: 2020/10/30 18:16:08 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "g42.h"
-#include "math.h"
+#include "../libft/libft.h"
 
-void	g42_rotate_x_axis(t_vec3 *vec, double angle)
+t_vars		*fdf_clean(t_vars **vars)
 {
-	t_m4x4	m;
-	double	c;
-	double	s;
-
-	c = cos(angle * (PI / 180));
-	s = sin(angle * (PI / 180));
-	m = (t_m4x4)
-	{{
-		{ 1, 0, 0, 0},
-		{ 0, c, s, 0},
-		{ 0, -s, c, 0},
-		{ 0, 0, 0, 1},
-	}};
-	*vec = g42_multi_vec_matrix(vec, &m);
+	ft_memdel((void**)&(*vars)->map->coord);
+	ft_memdel((void**)&(*vars)->map->proj);
+	ft_memdel((void**)&(*vars)->map->screen);
+	ft_memdel((void**)&(*vars)->map->width);
+	ft_memdel((void**)&(*vars)->map);
+	ft_memdel((void**)&(*vars)->data);
+	ft_memdel((void**)&(*vars)->mlx);
+	ft_memdel((void**)&(*vars));
+	return (NULL);
 }

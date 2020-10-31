@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:13:22 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/17 17:20:23 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/30 11:32:54 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ int		g42_dot_product(t_vec3 *a, t_vec3 *b)
 	int		sum;
 
 	sum = a->x * b->x + a->y * b->y + a->z * b->z;
-	return sum;
+	return (sum);
 }
