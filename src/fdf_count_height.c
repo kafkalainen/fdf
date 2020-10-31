@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 10:55:36 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/26 16:31:12 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/31 13:59:55 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@ size_t	fdf_count_height(char const *s, t_map *map)
 			map->height++;
 		s++;
 	}
+	if (*s == '\0')
+		map->height++;
 	return (map->height);
 }

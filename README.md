@@ -28,21 +28,6 @@
 - I created g42 struct coord to hold x, y, z coordinates as doubles.
 - Struct map holds the coordinates for the points in the original map. However, image has a coordinates of it's own, where you need to change coordinates of the 3d (x,y,z) match 2d (x,y) plane. Point z has an equivalent in a 2d coordinate system, and that has to be found in order to create rotation and dilation.
 - x, y, z could be 0,0,0 and other point could be 1, 0, 10, but in x, y axis, that could be x, y (0,0 and 0, 10 respectively) or even 20, 200, since pixels.
-- Origo of the 2d plane is at 300, 400 pixels, or 200, 300 pixels.
-- Vector's length in first rendering is 30 pixels move in coordinates.
-- Screen space is set to left -1 right +1, +1 bottom and -1 up.
-- Camera needs to have set coordinates, let's assume that is 0, 0, 0.
-- To get isometric view of the object, set the Rotation order to zyx,
-  the z Rotation to 45 and the y Rotation to 35.264.
-- 3d space.
-- Object coordinates to world coordinates.
-- World coordinates to camera coordinates.
-- Camera coordinates to ndc.
-- NDC to raster space.
-- WDC (Window)
-- NDC (Normalized Device Coordinates)
-- PDC (Physical Device Coordinates)
-- Create isdigit_base and ft_atoi_base.
 - A valid map has depth coordinates in hexadecimal, combined (1,0xFF) or in decimal notation. It can have different row length.
 - A valid map has only following characters
 	`0123456789xXabcdefABCDEF,\s\n`
@@ -59,11 +44,7 @@
 - Why to use floats against doubles [Link](https://stackoverflow.com/questions/24231389/struct-or-class-for-matrix-4x4-object)
 - Bresenham's Algorithm implementation using bitwise calculations [Link](https://hbfs.wordpress.com/2009/07/28/faster-than-bresenhams-algorithm/)
 - Here are some spatial transformation matrices [Link](https://www.brainvoyager.com/bv/doc/UsersGuide/CoordsAndTransforms/SpatialTransformationMatrices.html)
-### To-do
-- Read about vectors and matrices, and how to use them.
-- If vectors and matrices fail, then use ready-made trigonometric solution.
-- Test by creating a
-- z depth/height
-- x point
-- y point
--
+
+### ToDo
+
+- See where uninitialized values come from in matrix when using pyramide map.

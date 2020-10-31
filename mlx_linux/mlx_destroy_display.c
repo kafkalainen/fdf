@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   g42_scale_y.c                                      :+:      :+:    :+:   */
+/*   mlx_destroy_display.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 11:42:03 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/31 12:12:24 by jnivala          ###   ########.fr       */
+/*   Created: 2020/10/03 18:56:35 by mg                #+#    #+#             */
+/*   Updated: 2020/10/04 01:55:35 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "g42.h"
+#include "mlx_int.h"
 
-void	g42_scale_y(t_vec3 *vec, double scale)
+int	mlx_destroy_display(t_xvar *xvar)
 {
-	t_m4x4	m;
-
-	m = (t_m4x4)
-	{{
-		{ 1, 0, 0, 0},
-		{ 0, scale, 0, 0},
-		{ 0, 0, 1, 0},
-		{ 0, 0, 0, 1},
-	}};
-	*vec = g42_multi_vec_matrix(vec, &m);
+	XCloseDisplay(xvar->display);
 }

@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 14:30:47 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/31 09:26:27 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/31 14:48:51 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <unistd.h>
 #include "../libft/libft.h"
 #include "fdf.h"
+#include <stdio.h>
 
 static int	fdf_check_legal_characters(char *str)
 {
