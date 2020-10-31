@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 16:32:21 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/31 08:41:33 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/31 09:29:59 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,7 @@ void	fdf_print_cam(t_cam *cur);
 int		fdf_count_colour_scale(t_map *map);
 
 t_vars	*fdf_clean(t_vars **vars);
+
+int		fdf_del_vars(t_vars **vars);
 
 #endif

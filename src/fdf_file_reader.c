@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 14:30:47 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/31 08:52:33 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/31 09:26:27 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,20 @@
 static int	fdf_check_legal_characters(char *str)
 {
 	size_t		len;
-	static char legal[21] = {
+	static char legal[22] = {
 		'X', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-		'A', 'B', 'C', 'D', 'E', 'F', ' ', ',', '\n'
+		'A', 'B', 'C', 'D', 'E', 'F', ' ', ',', '\n', '-'
 		};
 
 	len = ft_strlen(str);
 	while (--len)
 	{
 		if (!(ft_strchr(legal, ft_toupper(str[len]))))
+		{
+			ft_putchar(str[len]);
+			ft_putchar('\n');
 			return (INVALID_CHARACTERS);
+		}
 	}
 	return (0);
 }
@@ -134,7 +138,8 @@ int			fdf_file_reader(t_map *map, char *filename)
 		ft_putendl_fd("Memory allocation succeeded, reading coordinates.", 1);
 		fdf_read_coord(map, &arr);
 		arr = ft_strarrdel(&arr, map->pts);
+		close(fd);
+		return (EXIT_SUCCESS);
 	}
-	close(fd);
-	return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 10:47:56 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/30 18:19:16 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/31 09:29:30 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,11 @@ int				main(int argc, char **argv)
 	t_vars		*vars;
 
 	if (argc != 2)
-	{
 		return (fdf_error("Please provide a valid name. ./fdf <filename>\n"));
-	}
 	if (!(vars = fdf_init_vars()))
 		return (EXIT_FAILURE);
 	if (fdf_file_reader(vars->map, argv[1]))
-		return (EXIT_FAILURE);
+		return (fdf_del_vars(&vars));
 	if (!(vars->mlx = mlx_init()))
 		return (EXIT_FAILURE);
 	if (!(vars->win = mlx_new_window(vars->mlx, WIN_WIDTH, WIN_HEIGHT, "FdF")))

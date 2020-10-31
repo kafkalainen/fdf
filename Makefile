@@ -6,7 +6,7 @@
 #    By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/03 18:33:41 by joonasniv         #+#    #+#              #
-#    Updated: 2020/10/31 07:43:16 by jnivala          ###   ########.fr        #
+#    Updated: 2020/10/31 09:25:50 by jnivala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ SRC = $(addprefix $(source_dir)/,\
 	fdf_count_colour_scale.c\
 	fdf_error.c\
 	fdf_clean.c\
+	fdf_del_vars.c\
 )
 OBJ = $(SRC:.c=.o)
 
