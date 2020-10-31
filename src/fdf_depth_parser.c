@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 12:40:07 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/29 14:54:26 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/31 11:09:40 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ double			fdf_depth_parser(t_map *map, char *elem)
 		db = ft_atoi_base(elem + 2, 16);
 	else if (len > 4 && ft_isdigit(elem[0]))
 		db = fdf_combined_format(elem);
-	else if (len > 0 && ft_isdigit(elem[0]))
+	else if (len > 0)
 		db = (double)(ft_atoi_base(elem, 10));
 	else
 		db = 0.0;

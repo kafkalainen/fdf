@@ -6,21 +6,18 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 08:43:38 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/30 18:26:07 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/31 11:47:45 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../mlx_linux/mlx.h"
 #include "fdf.h"
 
 int		fdf_handle_keypress(int keycode, t_vars *vars)
 {
 	if (vars && keycode == ESC)
 	{
-		mlx_destroy_image(vars->mlx, vars->data->img);
-		mlx_destroy_window(vars->mlx, vars->win);
-		fdf_clean(&vars);
+		vars = fdf_clean(&vars);
 		exit(EXIT_SUCCESS);
 	}
 	if (vars && (keycode == KEY_D || keycode == KEY_W
@@ -38,5 +35,9 @@ int		fdf_handle_keypress(int keycode, t_vars *vars)
 		fdf_iso_object(keycode, vars);
 	if (vars && keycode == KEY_F)
 		fdf_front_object(keycode, vars);
+	if (vars && keycode == KEY_C)
+		fdf_change_colour(keycode, vars);
+	if (vars && (keycode == KEY_3 || keycode == KEY_4))
+		fdf_manipulate_y(keycode, vars);
 	return (0);
 }

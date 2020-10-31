@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 09:20:19 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/30 11:34:09 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/31 09:57:03 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ void		fdf_draw_wire(t_data *data, t_map *map, t_uv *coord, int colour)
 		}
 		z++;
 	}
-	fdf_draw_menu(data, 0xff5ca08e);
+	fdf_draw_menu(data, colour);
 }

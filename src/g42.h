@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 08:32:27 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/31 06:49:41 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/31 11:43:15 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,8 @@ typedef struct	s_map {
 	t_vec3		*proj;
 	t_uv		*screen;
 	size_t		height;
-	size_t		max_depth;
-	size_t		min_depth;
+	double		max_depth;
+	double		min_depth;
 	size_t		*width;
 	size_t		max_width;
 	size_t		pts;
@@ -195,6 +195,8 @@ void			g42_rotate_y_axis(t_vec3 *vec, double angle);
 void			g42_rotate_z_axis(t_vec3 *vec, double angle);
 
 void			g42_scale_point(t_vec3 *vec, double scale);
+
+void			g42_scale_y(t_vec3 *vec, double scale);
 
 void			g42_translate(t_vec3 *vec, t_vec3 a);
 

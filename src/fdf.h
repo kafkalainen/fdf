@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 16:32:21 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/31 09:29:59 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/10/31 11:48:25 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # define KEY_E 101
 # define KEY_1 49
 # define KEY_2 50
+# define KEY_3 51
+# define KEY_4 52
+# define KEY_C 99
 # define KEY_R 114
 # define KEY_F 102
 # define KEY_G 103
@@ -36,9 +39,25 @@
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 # define MENU_HEIGHT 200
-# define BUFF_SIZE 4
+# define BUFF_SIZE 1024
+# define SNOW 0xfffafa
+# define MISTYROSE 0xffe4e1
+# define LIGHTBLUE 0xadd8e6
+# define POWDERBLUE 0xb0e0e6
+# define PALETURQUOISE 0xafeeee
+# define TURQUOISE 0x5ca08e
+# define PALEGREEN 0x98fb98
+# define LIMEGREEN 0x32cd32
+# define LIGHTYELLOW 0xffffe0
+# define SANDYBROWN 0xf4a460
+# define ORANGE 0xffa500
+# define HOTPINK 0xff69b4
+# define LIGHTPINK 0xffb6c1
+# define VIOLETRED 0xd02090
 # include "g42.h"
 # include <string.h>
+
+int		fdf_change_colour(int keycode, t_vars *vars);
 
 int		fdf_check_valid_depth(char *str, char *validate);
 
@@ -97,5 +116,7 @@ int		fdf_count_colour_scale(t_map *map);
 t_vars	*fdf_clean(t_vars **vars);
 
 int		fdf_del_vars(t_vars **vars);
+
+int		fdf_manipulate_y(int keycode, t_vars *vars);
 
 #endif

@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_init_camera.c                                  :+:      :+:    :+:   */
+/*   g42_scale_y.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/27 12:20:07 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/31 10:16:45 by jnivala          ###   ########.fr       */
+/*   Created: 2020/10/31 11:42:03 by jnivala           #+#    #+#             */
+/*   Updated: 2020/10/31 11:52:42 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "g42.h"
 
-int		fdf_init_camera(t_cam *cur)
+void	g42_scale_y(t_vec3 *vec, double scale)
 {
-	cur->ang_x = 0.0;
-	cur->ang_y = 0.0;
-	cur->ang_z = 0.0;
-	cur->dist = 0.0;
-	cur->vector.x = 0.0;
-	cur->vector.y = 0.0;
-	cur->vector.z = 0.0;
-	cur->colour = TURQUOISE;
-	return (0);
+	t_m4x4	m;
+
+	m = (t_m4x4)
+	{{
+		{ scale, 0, 0, 0},
+		{ 0, scale, 0, 0},
+		{ 0, 0, 1, 0},
+		{ 0, 0, 0, 1},
+	}};
+	*vec = g42_multi_vec_matrix(vec, &m);
 }
