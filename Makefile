@@ -6,7 +6,7 @@
 #    By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/03 18:33:41 by joonasniv         #+#    #+#              #
-#    Updated: 2020/11/02 10:59:58 by jnivala          ###   ########.fr        #
+#    Updated: 2020/11/02 11:44:43 by jnivala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,6 @@ SRC_LIST = \
 	g42_cross_product.c\
 	g42_dot_product.c\
 	g42_normalize_vector.c\
-	g42_2d_to_ndc.c\
 	g42_2d_to_uv.c\
 	g42_ndc_to_raster_space.c\
 	g42_rotate_x_axis.c\
