@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 10:47:56 by jnivala           #+#    #+#             */
-/*   Updated: 2020/11/02 10:41:26 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/11/02 11:04:53 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int				main(int argc, char **argv)
 	t_vars		*vars;
 
 	if (argc != 2)
-		return (fdf_error("Please provide a valid name. ./fdf <filename>\n"));
+		return (fdf_error("Please provide a valid name. ./fdf <filename>"));
 	if (!(vars = fdf_init_vars()))
 		return (EXIT_FAILURE);
 	if (fdf_file_reader(vars->map, argv[1]))
@@ -29,7 +29,6 @@ int				main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	if (!(vars->win = mlx_new_window(vars->mlx, WIN_WIDTH, WIN_HEIGHT, "FdF")))
 		return (EXIT_FAILURE);
-	vars->data = (t_data*)malloc(sizeof(t_data));
 	vars->data->img = mlx_new_image(vars->mlx, WIN_WIDTH, WIN_HEIGHT);
 	vars->data->addr = mlx_get_data_addr(vars->data->img,
 		&vars->data->bpp, &vars->data->llen, &vars->data->endian);

@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 14:39:19 by jnivala           #+#    #+#             */
-/*   Updated: 2020/11/02 09:45:29 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/11/02 11:03:23 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int			fdf_rotate_object(int keycode, t_vars *vars)
 	vars->data->addr = mlx_get_data_addr(vars->data->img, &vars->data->bpp,
 		&vars->data->llen, &vars->data->endian);
 	fdf_mutate_points(keycode, &vars);
-	fdf_print_cam(&vars->cur);
 	fdf_translate_coordinates(vars->map, &vars->cur);
 	fdf_draw_wire(vars->data, vars->map, vars->map->screen, vars->cur.colour);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->data->img, 0, 0);

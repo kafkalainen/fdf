@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 09:21:44 by jnivala           #+#    #+#             */
-/*   Updated: 2020/11/02 10:38:00 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/11/02 11:02:58 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		fdf_del_vars(t_vars **vars)
 {
 	if (*vars)
 	{
+		ft_memdel((void**)&((*vars)->data));
 		ft_memdel((void**)&((*vars)->map));
 		ft_memdel((void**)&((*vars)));
 	}

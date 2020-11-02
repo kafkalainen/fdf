@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 14:30:47 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/31 14:48:51 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/11/02 11:11:35 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <unistd.h>
 #include "../libft/libft.h"
 #include "fdf.h"
-#include <stdio.h>
 
 static int	fdf_check_legal_characters(char *str)
 {
@@ -50,7 +49,8 @@ static char	**fdf_map_mem_allocation(char *str, t_map *map)
 	map->min_depth = 0;
 	map->pts = ft_count_wrds(str, ' ');
 	fdf_count_height(str, map);
-	fdf_count_width(str, map);
+	if (!(map->width = fdf_count_width(str, map)))
+		return (NULL);
 	if (!(map->coord = (t_vec3*)malloc(sizeof(*map->coord) * map->pts + 1)))
 		return (NULL);
 	if (!(map->proj = (t_vec3*)malloc(sizeof(*(map->proj)) * map->pts + 1)))
@@ -134,7 +134,10 @@ int			fdf_file_reader(t_map *map, char *filename)
 		else
 			ft_putendl_fd("Map has only valid characters, proceeding.", 1);
 		if (!(arr = fdf_map_mem_allocation(str, map)))
+		{
+			ft_strdel(&str);
 			return (fdf_error("ERROR: Memory allocation fail creating map."));
+		}
 		ft_strdel(&str);
 		ft_putendl_fd("Memory allocation succeeded, reading coordinates.", 1);
 		fdf_read_coord(map, &arr);

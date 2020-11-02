@@ -6,7 +6,7 @@
 #    By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/03 18:33:41 by joonasniv         #+#    #+#              #
-#    Updated: 2020/11/02 10:41:11 by jnivala          ###   ########.fr        #
+#    Updated: 2020/11/02 10:59:58 by jnivala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,6 @@ SRC_LIST = \
 	fdf_depth_parser.c\
 	fdf_check_valid_depth.c\
 	fdf_double_parser.c\
-	fdf_print_cam.c\
 	fdf_reset_object.c\
 	fdf_iso_object.c\
 	fdf_front_object.c\

@@ -6,12 +6,11 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 13:03:12 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/31 11:35:45 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/11/02 10:58:06 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "g42.h"
-#include <stdio.h>
 
 int		fdf_count_colour_scale(t_map *map)
 {

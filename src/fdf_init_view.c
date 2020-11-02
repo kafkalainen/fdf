@@ -6,12 +6,11 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:23:57 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/31 14:49:00 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/11/02 10:58:19 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 int		fdf_init_view(t_map *map, t_cam *cur)
 {
