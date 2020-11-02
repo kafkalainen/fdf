@@ -6,11 +6,11 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 09:41:04 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/30 18:22:07 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/11/02 14:17:26 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
+#include "../libft/libft.h"
 #include "g42.h"
 
 void		g42_mlx_draw_line_dda(t_data *data, t_uv p0, t_uv p1, int c)
@@ -21,7 +21,7 @@ void		g42_mlx_draw_line_dda(t_data *data, t_uv p0, t_uv p1, int c)
 
 	delta.x = p1.u - p0.u;
 	delta.y = p1.v - p0.v;
-	pixels = sqrt((delta.x * delta.x) + (delta.y * delta.y));
+	pixels = ft_sqrt((delta.x * delta.x) + (delta.y * delta.y));
 	delta.x /= pixels;
 	delta.y /= pixels;
 	pixel.x = p0.u;
