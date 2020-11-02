@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 16:32:21 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/31 11:48:25 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/11/02 10:40:59 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ size_t	fdf_idx(size_t x, size_t y, t_map *map);
 int		fdf_init_view(t_map *map, t_cam *cur);
 
 int		fdf_init_camera(t_cam *cam);
+
+t_vars	*fdf_init_vars(void);
 
 int		fdf_iso_object(int keycode, t_vars *vars);
 

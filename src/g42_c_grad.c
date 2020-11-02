@@ -6,13 +6,12 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 16:59:02 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/30 13:07:53 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/11/02 09:35:58 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "g42.h"
-#include "math.h"
 
 static double	g42_traveled_dist(t_uv *p0, t_uv *p1, t_uv *s)
 {

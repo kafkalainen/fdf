@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_del_vars.c                                     :+:      :+:    :+:   */
+/*   fdf_init_vars.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 09:21:44 by jnivala           #+#    #+#             */
-/*   Updated: 2020/11/02 10:38:00 by jnivala          ###   ########.fr       */
+/*   Created: 2020/11/02 10:39:39 by jnivala           #+#    #+#             */
+/*   Updated: 2020/11/02 10:40:28 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
 #include "g42.h"
-#include "../libft/libft.h"
+#include <stdlib.h>
 
-int		fdf_del_vars(t_vars **vars)
+t_vars	*fdf_init_vars(void)
 {
-	if (*vars)
-	{
-		ft_memdel((void**)&((*vars)->map));
-		ft_memdel((void**)&((*vars)));
-	}
-	return (fdf_error("ERROR: Invalid file descriptor."));
+	t_vars	*vars;
+
+	if (!(vars = (t_vars*)malloc(sizeof(t_vars))))
+		return (NULL);
+	if (!(vars->map = (t_map*)malloc(sizeof(t_map))))
+		return (NULL);
+	return (vars);
 }

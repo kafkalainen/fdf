@@ -6,19 +6,23 @@
 #    By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/03 18:33:41 by joonasniv         #+#    #+#              #
-#    Updated: 2020/10/31 11:48:43 by jnivala          ###   ########.fr        #
+#    Updated: 2020/11/02 10:41:11 by jnivala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-source_dir = src
-LIBFT = libft/
-include_dirs = libft /usr/include mlx_linux $(source_dir)
+source_dir = src/
+objects_dir = obj/
+mlx_dir = mlx_linux/
+libft_dir = libft/
+LIBFT = $(libft_dir)libft.a
+include_dirs = libft /usr/include $(mlx_dir) $(source_dir)
 INC = /usr/include
 INCLIB = $(INC)/../lib
+MLX = $(mlx_dir)libmlx.a
 
-SRC = $(addprefix $(source_dir)/,\
+SRC_LIST = \
 	main.c\
 	g42_get_transparency.c\
 	g42_get_blue.c\
@@ -73,6 +77,7 @@ SRC = $(addprefix $(source_dir)/,\
 	fdf_front_object.c\
 	fdf_init_camera.c\
 	fdf_init_view.c\
+	fdf_init_vars.c\
 	fdf_draw_menu.c\
 	fdf_draw_background.c\
 	fdf_draw_instructions_left.c\
@@ -84,30 +89,48 @@ SRC = $(addprefix $(source_dir)/,\
 	fdf_del_vars.c\
 	fdf_change_colour.c\
 	fdf_manipulate_y.c\
-)
-OBJ = $(SRC:.c=.o)
 
+HEADERS = $(addprefix $(source_dir),\
+		fdf.h\
+		g42.h\
+	)
+SRC = $(addprefix $(source_dir),$(SRC_LIST))
+OBJ_LIST = $(SRC_LIST:.c=.o)
+OBJ	= $(addprefix $(objects_dir),$(OBJ_LIST))
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g $(addprefix -I,$(include_dirs))
+CFLAGS = -Wall -Wextra -Werror -g
+INCLUDES = $(addprefix -I,$(include_dirs))
 
 .PHONY: all clean fclean re debug
 
 all: $(NAME)
 
-$(NAME): $(OBJ) src/g42.h src/fdf.h
-	make -C $(LIBFT) fclean && make -C $(LIBFT)
+$(NAME): $(LIBFT) $(MLX) $(objects_dir) $(OBJ)
 	$(CC) $(OBJ) -Lmlx_linux -lmlx -L$(INCLIB) -Llibft/ -lft -Imlx_linux -lXext -lX11 -lm -lz -o $@
 
+$(objects_dir):
+	mkdir -p $(objects_dir)
+
+$(objects_dir)%.o: $(source_dir)%.c $(HEADERS)
+	$(CC) $(CFLAGS) -c $(INCLUDES) $< -o $@
+
+$(LIBFT):
+	make -C $(libft_dir)
+
+$(MLX):
+	make -C $(mlx_dir)
+
 clean:
-	make -C $(LIBFT) clean
-	rm -rf $(OBJ)
+	make -C $(mlx_dir) clean
+	make -C $(libft_dir) clean
+	rm -rf $(objects_dir)
 
 fclean: clean
-	rm $(LIBFT)libft.a
+	rm $(LIBFT)
 	rm -f $(NAME)
 
 re: fclean all
 
-debug: $(OBJ) src/g42.h src/fdf.h
+debug: $(MLX) $(objects_dir) $(OBJ)
 	make -C $(LIBFT) fclean && make debug -C $(LIBFT)
 	$(CC) $(OBJ) -Lmlx_linux -lmlx -L$(INCLIB) -Llibft/ -lft -Imlx_linux -lXext -lX11 -lm -lz -o $@

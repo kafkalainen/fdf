@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 14:39:19 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/30 17:29:10 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/11/02 09:45:29 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ static void	fdf_mutate_points(int keycode, t_vars **vars)
 
 	if (keycode == KEY_Q || keycode == KEY_E)
 	{
-		mod = (keycode == KEY_Q ? 15.0 : -15.0);
+		mod = (keycode == KEY_Q ? 10.0 : -10.0);
 		g42_mod_pts((*vars)->map, &g42_rotate_x_axis, mod);
 		(*vars)->cur.ang_x += mod;
 	}
 	if (keycode == KEY_D || KEY_A)
 	{
-		mod = (keycode == KEY_D ? 15.0 : -15.0);
+		mod = (keycode == KEY_D ? 10.0 : -10.0);
 		g42_mod_pts((*vars)->map, &g42_rotate_y_axis, mod);
 		(*vars)->cur.ang_y += mod;
 	}
 	if (keycode == KEY_W || keycode == KEY_S)
 	{
-		mod = (keycode == KEY_W ? 15.0 : -15.0);
+		mod = (keycode == KEY_W ? 10.0 : -10.0);
 		g42_mod_pts((*vars)->map, &g42_rotate_z_axis, mod);
 		(*vars)->cur.ang_z += mod;
 	}

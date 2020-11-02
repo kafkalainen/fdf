@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 09:33:31 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/31 11:04:34 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/11/02 10:43:03 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../mlx_linux/mlx.h"
 #include "../libft/libft.h"
 
-static int	fdf_return_next_colour(int	colour)
+static int	fdf_return_next_colour(int colour)
 {
 	int			i;
 	static int	tab[] = {
@@ -23,6 +23,7 @@ static int	fdf_return_next_colour(int	colour)
 		LIGHTBLUE, POWDERBLUE, LIGHTYELLOW, SANDYBROWN,
 		SNOW, ORANGE, HOTPINK, LIGHTPINK, MISTYROSE, VIOLETRED
 	};
+
 	i = 0;
 	while (i < 14)
 	{

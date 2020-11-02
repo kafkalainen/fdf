@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 10:47:56 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/31 12:59:25 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/11/02 10:41:26 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,6 @@
 #include "../libft/libft.h"
 #include "g42.h"
 #include "fdf.h"
-#include <stdlib.h>
-
-static t_vars	*fdf_init_vars(void)
-{
-	t_vars	*vars;
-
-	if (!(vars = (t_vars*)malloc(sizeof(t_vars))))
-		return (NULL);
-	if (!(vars->map = (t_map*)malloc(sizeof(t_map))))
-		return (NULL);
-	return (vars);
-}
-
-int		get_key_code(int key, void *param)
-{
-	if (param == NULL)
-	{
-		ft_putchar('X');
-	}
-	ft_putchar(' ');
-	ft_putnbr(key);
-	ft_putchar('\n');
-	return (0);
-}
 
 int				main(int argc, char **argv)
 {
@@ -62,7 +38,6 @@ int				main(int argc, char **argv)
 	fdf_draw_wire(vars->data, vars->map, vars->map->screen, vars->cur.colour);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->data->img, 0, 0);
 	mlx_hook(vars->win, KEYPRESS, KEYPRESSMASK, fdf_handle_keypress, vars);
-	//mlx_hook(vars->win, KEYPRESS, KEYPRESSMASK, get_key_code, vars);
 	mlx_loop(vars->mlx);
 	return (EXIT_SUCCESS);
 }
