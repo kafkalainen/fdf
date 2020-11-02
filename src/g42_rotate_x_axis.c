@@ -6,12 +6,12 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 13:12:32 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/30 18:20:21 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/11/02 14:24:02 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "g42.h"
-#include "math.h"
+#include <math.h>
 
 void	g42_rotate_x_axis(t_vec3 *vec, double angle)
 {
