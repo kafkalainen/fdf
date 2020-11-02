@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 08:32:27 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/31 11:43:15 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/11/02 11:37:02 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,8 +201,6 @@ void			g42_scale_y(t_vec3 *vec, double scale);
 void			g42_translate(t_vec3 *vec, t_vec3 a);
 
 void			g42_clip_point(t_vec3 *a);
-
-t_vec3			g42_2d_to_ndc(t_vec3 proj_coord);
 
 t_uv			g42_2d_to_uv(t_vec3 coord, t_map *map, t_cam *cam);
 

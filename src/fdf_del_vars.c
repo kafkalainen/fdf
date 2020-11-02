@@ -6,15 +6,14 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 09:21:44 by jnivala           #+#    #+#             */
-/*   Updated: 2020/11/02 11:02:58 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/11/02 11:34:21 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
 #include "g42.h"
 #include "../libft/libft.h"
 
-int		fdf_del_vars(t_vars **vars)
+char	*fdf_del_vars(t_vars **vars)
 {
 	if (*vars)
 	{
@@ -22,5 +21,5 @@ int		fdf_del_vars(t_vars **vars)
 		ft_memdel((void**)&((*vars)->map));
 		ft_memdel((void**)&((*vars)));
 	}
-	return (fdf_error("ERROR: Invalid file descriptor."));
+	return ("ERROR: Invalid file.");
 }

@@ -6,12 +6,11 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 12:03:37 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/30 10:23:18 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/11/02 11:32:27 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 t_uv	g42_2d_to_uv(t_vec3 coord, t_map *map, t_cam *cam)
 {

@@ -6,13 +6,13 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 10:53:05 by jnivala           #+#    #+#             */
-/*   Updated: 2020/10/31 08:59:54 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/11/02 11:34:01 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <stdlib.h>
-#include "fdf.h"
+#include "g42.h"
 #include "../libft/libft.h"
 
 static size_t	fdf_row_width(const char *s)

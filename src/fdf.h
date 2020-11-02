@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 16:32:21 by jnivala           #+#    #+#             */
-/*   Updated: 2020/11/02 11:03:27 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/11/02 11:31:32 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@
 # define DOWN 65364
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
-# define MALLOC_FAILED 1
 # define INVALID_CHARACTERS 2
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
@@ -115,7 +114,7 @@ int		fdf_count_colour_scale(t_map *map);
 
 t_vars	*fdf_clean(t_vars **vars);
 
-int		fdf_del_vars(t_vars **vars);
+char	*fdf_del_vars(t_vars **vars);
 
 int		fdf_manipulate_y(int keycode, t_vars *vars);
 

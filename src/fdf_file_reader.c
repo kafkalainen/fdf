@@ -6,7 +6,7 @@
 /*   By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 14:30:47 by jnivala           #+#    #+#             */
-/*   Updated: 2020/11/02 11:11:35 by jnivala          ###   ########.fr       */
+/*   Updated: 2020/11/02 11:30:14 by jnivala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ static void	fdf_read_coord(t_map *map, char ***arr)
 
 int			fdf_file_reader(t_map *map, char *filename)
 {
-	int			err;
 	int			fd;
 	char		*str;
 	char		**arr;
@@ -128,18 +127,15 @@ int			fdf_file_reader(t_map *map, char *filename)
 	{
 		if (!(str = fdf_read_function(fd)))
 			return (fdf_error("ERROR: Memory allocation fail reading file."));
-		err = fdf_check_legal_characters(str);
-		if (err == INVALID_CHARACTERS)
-			return (fdf_error("ERROR: Invalid characters."));
-		else
-			ft_putendl_fd("Map has only valid characters, proceeding.", 1);
+		if (fdf_check_legal_characters(str) == INVALID_CHARACTERS)
+			return (fdf_error("ERROR: Former invalid characters."));
 		if (!(arr = fdf_map_mem_allocation(str, map)))
 		{
 			ft_strdel(&str);
 			return (fdf_error("ERROR: Memory allocation fail creating map."));
 		}
 		ft_strdel(&str);
-		ft_putendl_fd("Memory allocation succeeded, reading coordinates.", 1);
+		ft_putendl_fd("Map is valid, allocation succeeded, creating map.", 1);
 		fdf_read_coord(map, &arr);
 		arr = ft_strarrdel(&arr, map->pts);
 		close(fd);
