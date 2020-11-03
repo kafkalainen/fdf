@@ -6,7 +6,7 @@
 #    By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/03 18:33:41 by joonasniv         #+#    #+#              #
-#    Updated: 2020/11/03 08:51:32 by jnivala          ###   ########.fr        #
+#    Updated: 2020/11/03 09:30:37 by jnivala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -130,5 +130,5 @@ fclean: clean
 re: fclean all
 
 debug: $(MLX) $(objects_dir) $(OBJ)
-	make -C $(LIBFT) fclean && make debug -C $(LIBFT)
+	make -C $(libft_dir) fclean && make debug -C $(libft_dir)
 	$(CC) $(OBJ) -Lmlx_linux -lmlx -L$(INCLIB) -Llibft/ -lft -Imlx_linux -lXext -lX11 -lm -lz -o $@
