@@ -6,7 +6,7 @@
 #    By: jnivala <jnivala@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/03 18:33:41 by joonasniv         #+#    #+#              #
-#    Updated: 2020/11/02 11:44:43 by jnivala          ###   ########.fr        #
+#    Updated: 2020/11/03 08:51:32 by jnivala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,7 +96,7 @@ SRC = $(addprefix $(source_dir),$(SRC_LIST))
 OBJ_LIST = $(SRC_LIST:.c=.o)
 OBJ	= $(addprefix $(objects_dir),$(OBJ_LIST))
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 INCLUDES = $(addprefix -I,$(include_dirs))
 
 .PHONY: all clean fclean re debug
