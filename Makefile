@@ -17,8 +17,8 @@ objects_dir = obj/
 mlx_dir = mlx_linux/
 libft_dir = libft/
 LIBFT = $(libft_dir)libft.a
-include_dirs = libft /usr/include $(mlx_dir) $(source_dir)
-INC = /usr/include
+include_dirs = libft $(mlx_dir) $(source_dir)
+#INC = /usr/include
 INCLIB = $(INC)/../lib
 MLX = $(mlx_dir)libmlx.a
 
@@ -103,7 +103,7 @@ INCLUDES = $(addprefix -I,$(include_dirs))
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(MLX) $(objects_dir) $(OBJ)
+$(NAME): $(LIBFT) dependencies $(MLX) $(objects_dir) $(OBJ)
 	$(CC) $(OBJ) -Lmlx_linux -lmlx -L$(INCLIB) -Llibft/ -lft -Imlx_linux -lXext -lX11 -lm -lz -o $@
 
 $(objects_dir):
@@ -117,6 +117,11 @@ $(LIBFT):
 
 $(MLX):
 	make -C $(mlx_dir)
+
+dependencies:
+	echo "Installing required packages"
+	sudo apt-get install libx11-dev
+	sudo apt-get install libxext-dev
 
 clean:
 	make -C $(mlx_dir) clean
